@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">UTS_160420136</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="time_available">
+        <item>08.00 AM</item>
+        <item>10.00 AM</item>
+        <item>12.00 PM</item>
+        <item>14.00 PM</item>
+        <item>16.00 PM</item>
+        <item>18.00 PM</item>
+    </string-array>
+</resources>

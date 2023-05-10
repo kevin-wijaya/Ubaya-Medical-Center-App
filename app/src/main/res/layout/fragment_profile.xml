@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="true"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonProfileReports"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center|left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Reports"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/baseline_insert_drive_file_24"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconSize="25dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardUserImportant"
+                app:layout_constraintStart_toStartOf="@+id/cardUserImportant"
+                app:layout_constraintTop_toBottomOf="@+id/cardUserImportant"
+                app:strokeColor="@color/purple_700"
+                app:strokeWidth="1dp" />
+
+            <Button
+                android:id="@+id/buttonProfileSettings"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center|left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Settings"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/baseline_settings_24"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconSize="25dp"
+                app:layout_constraintEnd_toEndOf="@+id/buttonProfileReports"
+                app:layout_constraintStart_toStartOf="@+id/buttonProfileReports"
+                app:layout_constraintTop_toBottomOf="@+id/buttonProfileReports"
+                app:strokeColor="@color/purple_700"
+                app:strokeWidth="1dp" />
+
+            <Button
+                android:id="@+id/buttonLogOut"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center|left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Log Out"
+                android:textAllCaps="false"
+                android:textColor="@android:color/holo_red_light"
+                android:textColorHighlight="@android:color/holo_red_light"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/baseline_settings_24"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconSize="25dp"
+                app:iconTint="@android:color/holo_red_light"
+                app:layout_constraintEnd_toEndOf="@+id/buttonProfileSettings"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/buttonProfileSettings"
+                app:layout_constraintTop_toBottomOf="@+id/buttonProfileSettings"
+                app:rippleColor="#41FF4444"
+                app:strokeColor="@android:color/holo_red_light"
+                app:strokeWidth="1dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardUserImportant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="12dp"
+                app:cardBackgroundColor="@color/purple_700"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardUserProfileImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageUserProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/baseline_person_24" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/textName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/white"
+                        android:text="John Doe"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/cardUserProfileImage"
+                        app:layout_constraintTop_toTopOf="@+id/cardUserProfileImage" />
+
+                    <TextView
+                        android:id="@+id/textStatusOnline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:drawableLeft="@drawable/baseline_circle_24"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/teal_200"
+                        android:text="Active"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/textName"
+                        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+                    <TextView
+                        android:id="@+id/textPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:drawableLeft="@drawable/baseline_phone_24"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/white"
+                        android:text="(+62) 1234567890"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/cardUserProfileImage"
+                        app:layout_constraintTop_toBottomOf="@+id/cardUserProfileImage" />
+
+                    <TextView
+                        android:id="@+id/textEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="24dp"
+                        android:drawableLeft="@drawable/baseline_email_24"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/white"
+                        android:text="johndoe99@gmail.com"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textPhone"
+                        app:layout_constraintTop_toBottomOf="@+id/textPhone" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

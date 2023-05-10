@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/umc_navigation"
+    app:startDestination="@id/itemHome">
+
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.example.uts_160420136.view.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.uts_160420136.view.ProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/actionReportFragment"
+            app:destination="@id/reportFragment"
+            app:popUpTo="@id/reportFragment" />
+        <action
+            android:id="@+id/actionSettingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemSearch"
+        android:name="com.example.uts_160420136.view.SearchFragment"
+        android:label="Search Doctors"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/actionDoctorDetailFragment"
+            app:destination="@id/doctorDetailFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/doctorDetailFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailFragment"
+        android:name="com.example.uts_160420136.view.DoctorDetailFragment"
+        android:label="Profile Doctor"
+        tools:layout="@layout/fragment_doctor_detail" >
+        <action
+            android:id="@+id/actionAppointmentFragment"
+            app:destination="@id/appointmentFragment"
+            app:popUpTo="@id/doctorDetailFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/actionChatFragment"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/doctorDetailFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentFragment"
+        android:name="com.example.uts_160420136.view.AppointmentFragment"
+        android:label="Appointment"
+        tools:layout="@layout/fragment_appointment" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.uts_160420136.view.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.uts_160420136.view.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionItemHome"
+            app:destination="@id/itemHome" />
+        <action
+            android:id="@+id/actionRegisterFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.uts_160420136.view.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/actionLoginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.uts_160420136.view.ReportFragment"
+        android:label="Last Check Up Report"
+        tools:layout="@layout/fragment_report" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.uts_160420136.view.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
