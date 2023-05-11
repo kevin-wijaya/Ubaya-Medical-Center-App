@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.uts_160420136.R
 import com.example.uts_160420136.viewmodel.ListDoctorViewModel
 
@@ -31,12 +32,23 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerViewDoctors = view.findViewById<RecyclerView>(R.id.recyclerViewDoctors)
+        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayout)
+        val textSearchError = view.findViewById<TextView>(R.id.textSearchError)
+        val progressLoadDoctors = view.findViewById<ProgressBar>(R.id.progressLoadDoctors)
 
         viewModel = ViewModelProvider(this).get(ListDoctorViewModel::class.java)
         viewModel.load()
 
         recyclerViewDoctors.layoutManager = LinearLayoutManager(context)
         recyclerViewDoctors.adapter = doctorListAdapter
+
+        refreshLayout.setOnRefreshListener {
+            recyclerViewDoctors.visibility = View.GONE
+            textSearchError.visibility = View.GONE
+            progressLoadDoctors.visibility = View.VISIBLE
+            viewModel.load()
+            refreshLayout.isRefreshing = false
+        }
 
         observeViewModel(view)
     }
@@ -52,12 +64,13 @@ class SearchFragment : Fragment() {
 
         viewModel.loadingDoneLD.observe(viewLifecycleOwner, Observer{
             val recyclerViewDoctors = view.findViewById<RecyclerView>(R.id.recyclerViewDoctors)
+            val progressLoadDoctors = view.findViewById<ProgressBar>(R.id.progressLoadDoctors)
             if(it) {
-                view.findViewById<ProgressBar>(R.id.progressLoadDoctors).visibility = View.GONE
+                progressLoadDoctors.visibility = View.GONE
                 recyclerViewDoctors.visibility = View.VISIBLE
             }
             else {
-                view.findViewById<ProgressBar>(R.id.progressLoadDoctors).visibility = View.VISIBLE
+                progressLoadDoctors.visibility = View.VISIBLE
                 recyclerViewDoctors.visibility = View.GONE
             }
         })

@@ -29,15 +29,18 @@
 
             <TextView
                 android:id="@+id/textDoctorNameDetail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
-                android:text="Dr. John Cena"
+                android:layout_marginEnd="12dp"
+                android:gravity="center"
+                android:text="..."
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/cardDoctorDetailImage"
-                app:layout_constraintStart_toStartOf="@+id/cardDoctorDetailImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardDoctorDetailImage" />
 
             <TextView
@@ -62,12 +65,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/imageDoctorItem"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/baseline_person_24" />
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageDoctorDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/baseline_person_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progressDetailBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -105,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:text="5 Years"
+                        android:text="0 Years"
                         android:textColor="@color/purple_700"
                         android:textSize="22sp"
                         android:textStyle="bold"
@@ -150,7 +172,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:text="100"
+                        android:text="0"
                         android:textColor="@color/purple_700"
                         android:textSize="22sp"
                         android:textStyle="bold"
@@ -195,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:text="99.0%"
+                        android:text="100%"
                         android:textColor="@color/purple_700"
                         android:textSize="22sp"
                         android:textStyle="bold"

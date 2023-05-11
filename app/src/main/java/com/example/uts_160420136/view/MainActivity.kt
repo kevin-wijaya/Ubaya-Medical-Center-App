@@ -1,11 +1,14 @@
 package com.example.uts_160420136.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -38,7 +41,9 @@ class MainActivity : AppCompatActivity() {
 
         // botomNav dan drawerLayout GONE apabila tidak berada home, search, profile
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.itemHome || destination.id == R.id.itemSearch || destination.id == R.id.itemProfile) {
+            if (destination.id == R.id.itemHome ||
+                destination.id == R.id.itemSearch ||
+                destination.id == R.id.itemProfile) {
                 bottomNav.visibility = View.VISIBLE
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             }
@@ -46,6 +51,18 @@ class MainActivity : AppCompatActivity() {
                 bottomNav.visibility = View.GONE
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
+        }
+
+        //Check Current Destination
+        if (navController.currentDestination?.id == R.id.itemHome ||
+            navController.currentDestination?.id == R.id.itemSearch ||
+            navController.currentDestination?.id == R.id.itemProfile) {
+            bottomNav.visibility = View.VISIBLE
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        }
+        else {
+            bottomNav.visibility = View.GONE
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
     }
 

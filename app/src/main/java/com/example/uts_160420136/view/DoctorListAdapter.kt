@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uts_160420136.R
 import com.example.uts_160420136.model.Doctor
-import com.squareup.picasso.Picasso
+import com.example.uts_160420136.util.loadImage
 
 class DoctorListAdapter(val doctorList: ArrayList<Doctor>):RecyclerView.Adapter<DoctorListAdapter.DoctorViewHolder>()
 {
@@ -31,14 +31,16 @@ class DoctorListAdapter(val doctorList: ArrayList<Doctor>):RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
         with(holder.view) {
-            Picasso.get().load(doctorList[position].photoUrl).into(findViewById<ImageView>(R.id.imageDoctorItem))
+            findViewById<ImageView>(R.id.imageDoctorItem).loadImage(doctorList[position].photoUrl.toString(), findViewById(R.id.progressItemBar))
+
             findViewById<TextView>(R.id.textDoctorNameItem).text = doctorList[position].name
             findViewById<TextView>(R.id.textSpecialistItem).text = doctorList[position].specialist
             findViewById<TextView>(R.id.textRate).text = doctorList[position].rating.toString()
             findViewById<TextView>(R.id.textExperienceItem).text = doctorList[position].experience.toString()
             findViewById<TextView>(R.id.textPatientsItem).text = doctorList[position].patients.toString()
+
             findViewById<CardView>(R.id.cardDoctorItem).setOnClickListener{
-                val action = SearchFragmentDirections.actionDoctorDetailFragment()
+                val action = SearchFragmentDirections.actionDoctorDetailFragment(doctorList[position].id.toString())
                 Navigation.findNavController(it).navigate(action)
             }
         }

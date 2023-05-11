@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.example.uts_160420136.R
 
 class RegisterFragment : Fragment() {
@@ -20,9 +21,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val textLogin = view.findViewById<TextView>(R.id.textLogin)
-//        textLogin.setOnClickListener{
-//            val action = RegisterFragmentDirections.actionLoginFragment()
-//            Navigation.findNavController(it).navigate(action)
-//        }
+        textLogin.setOnClickListener{
+            val action = RegisterFragmentDirections.actionLoginFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }
