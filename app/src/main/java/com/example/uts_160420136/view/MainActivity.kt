@@ -52,18 +52,6 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }
-
-        //Check Current Destination
-        if (navController.currentDestination?.id == R.id.itemHome ||
-            navController.currentDestination?.id == R.id.itemSearch ||
-            navController.currentDestination?.id == R.id.itemProfile) {
-            bottomNav.visibility = View.VISIBLE
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        }
-        else {
-            bottomNav.visibility = View.GONE
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

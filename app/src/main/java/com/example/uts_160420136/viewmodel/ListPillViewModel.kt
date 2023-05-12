@@ -22,6 +22,9 @@ class ListPillViewModel (application: Application): AndroidViewModel(application
     private var queue: RequestQueue?= null
 
     fun load() {
+        loadingDoneLD.value = false
+        loadingErrorLD.value = false
+
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://kevinwijaya.000webhostapp.com/ANMP/UTS/json.php" +
                 "?T0KEN=ANMPUTS160420136KEVINWIJAYA&4CCESS=PILL"
