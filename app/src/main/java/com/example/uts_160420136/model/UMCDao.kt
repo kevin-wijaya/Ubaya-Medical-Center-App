@@ -31,4 +31,10 @@ interface UMCDao {
     @Query("Select * FROM 'user' WHERE userId=:id")
     fun getUserPill(id:String) : List<UserWithPills>
     //USER WITH PILL
+
+    //USER WITH REPORT
+    @Transaction
+    @Query("Select * FROM 'user' WHERE userId=:id")
+    fun getUserReport(id:String) : UserWithReport
+    //USER WITH REPORT
 }

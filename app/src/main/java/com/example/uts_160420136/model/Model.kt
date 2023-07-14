@@ -17,11 +17,8 @@ data class Doctor (
     var experience: Int?,
     var patients: Int?,
     var rating: Double?,
-    @SerializedName("appointment_date")
     var appointmentDate: String?,
-    @SerializedName("appointment_time")
     var appointmentTime: String?,
-    @SerializedName("photo_url")
     var photoUrl: String?,
 ){
     @PrimaryKey(autoGenerate = true)
@@ -34,14 +31,10 @@ data class User (
     var username: String?,
     var password: String?,
     var gmail: String?,
-    @SerializedName("birth_of_date")
     var bod: String?,
-    @SerializedName("number_phone")
     var numberPhone: String?,
     var address: String?,
-    @SerializedName("blood_type")
     var bloodType: String?,
-    @SerializedName("photo_url")
     var photoUrl: String?,
 ){
     @PrimaryKey(autoGenerate = true)
@@ -49,19 +42,16 @@ data class User (
 }
 
 @Entity
-data class UserReport (
-    @SerializedName("user_id")
+data class Report (
     var userId: Int?,
-    @SerializedName("heart_rate")
     var heartRate: Int?,
     var thrombocyte: Int?,
-    @SerializedName("blood_type")
     var bloodType: String?,
     var systolik: Int?,
     var diastolik: Int?,
 ){
     @PrimaryKey(autoGenerate = true)
-    var UserReportId:Int = 0
+    var reportId:Int = 0
 }
 
 @Entity
@@ -88,4 +78,13 @@ data class UserWithPills(
         associateBy = Junction(UserPillCrossRef::class)
     )
     val pill:List<Pill>
+)
+
+data class UserWithReport(
+    @Embedded val user: User,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "userId"
+    )
+    val report:Report
 )

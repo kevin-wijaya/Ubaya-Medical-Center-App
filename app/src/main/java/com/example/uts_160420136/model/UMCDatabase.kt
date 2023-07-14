@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.uts_160420136.util.buildDb
 
-@Database(entities = [Doctor::class, User::class, UserReport::class, Pill::class, UserPillCrossRef::class], version = 4)
+@Database(entities = [Doctor::class, User::class, Report::class, Pill::class, UserPillCrossRef::class], version = 4)
 abstract class UMCDatabase:RoomDatabase() {
 
     abstract fun Dao() : UMCDao
