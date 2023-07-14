@@ -9,37 +9,28 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.uts_160420136.model.Doctor
+import com.example.uts_160420136.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.function.DoubleBinaryOperator
+import kotlin.coroutines.CoroutineContext
 
-class DetailDoctorViewModel(application: Application): AndroidViewModel(application){
+class DetailDoctorViewModel(application: Application): AndroidViewModel(application), CoroutineScope{
     val doctorLD = MutableLiveData<Doctor>()
 
-    val TAG = "DetailDoctorTag"
-    private var queue: RequestQueue? = null
+    private var job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 
     fun load(id: String) {
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://kevinwijaya.000webhostapp.com/ANMP/UTS/json.php" +
-                "?T0KEN=ANMPUTS160420136KEVINWIJAYA&4CCESS=DOCTOR&doctor_id=$id"
-        val stringRequest = StringRequest(Request.Method.GET, url,
-            { response ->
-                val sType = object : TypeToken<Doctor>() { }.type
-                val result = Gson().fromJson<Doctor>(response, sType)
-                doctorLD.value = result
-
-                Log.d("volley", response.toString())
-            },
-            { error ->
-                Log.d("volley", error.toString())
-            })
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+        launch {
+            val db = buildDb(getApplication())
+            doctorLD.postValue(db.Dao().selectDoctorById(id))
+        }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
-    }
 }

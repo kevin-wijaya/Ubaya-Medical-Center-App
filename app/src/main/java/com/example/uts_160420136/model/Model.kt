@@ -1,56 +1,91 @@
 package com.example.uts_160420136.model
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.Junction
+import androidx.room.PrimaryKey
+import androidx.room.Relation
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Doctor (
-    val id: Int?,
-    val name: String?,
-    val specialist: String?,
-    val bio: String?,
-    val educations: String?,
-    val address: String?,
-    val experience: Int?,
-    val patients: Int?,
-    val rating: Double?,
+    var name: String?,
+    var specialist: String?,
+    var bio: String?,
+    var educations: String?,
+    var address: String?,
+    var experience: Int?,
+    var patients: Int?,
+    var rating: Double?,
     @SerializedName("appointment_date")
-    val appointmentDate: String?,
+    var appointmentDate: String?,
     @SerializedName("appointment_time")
-    val appointmentTime: String?,
+    var appointmentTime: String?,
     @SerializedName("photo_url")
-    val photoUrl: String?,
-)
+    var photoUrl: String?,
+){
+    @PrimaryKey(autoGenerate = true)
+    var doctorId:Int = 0
+}
 
+@Entity
 data class User (
-    val id: Int?,
-    val name: String?,
-    val username: String?,
-    val password: String?,
-    val gmail: String?,
+    var name: String?,
+    var username: String?,
+    var password: String?,
+    var gmail: String?,
     @SerializedName("birth_of_date")
-    val bod: String?,
+    var bod: String?,
     @SerializedName("number_phone")
-    val numberPhone: String?,
-    val address: String?,
+    var numberPhone: String?,
+    var address: String?,
     @SerializedName("blood_type")
-    val bloodType: String?,
+    var bloodType: String?,
     @SerializedName("photo_url")
-    val photoUrl: String?,
-)
-data class UserReport (
-    val id: Int?,
-    @SerializedName("user_id")
-    val userId: Int?,
-    @SerializedName("heart_rate")
-    val heartRate: Int?,
-    val thrombocyte: Int?,
-    @SerializedName("blood_type")
-    val bloodType: String?,
-    val systolik: Int?,
-    val diastolik: Int?,
-)
+    var photoUrl: String?,
+){
+    @PrimaryKey(autoGenerate = true)
+    var userId:Int = 0
+}
 
+@Entity
+data class UserReport (
+    @SerializedName("user_id")
+    var userId: Int?,
+    @SerializedName("heart_rate")
+    var heartRate: Int?,
+    var thrombocyte: Int?,
+    @SerializedName("blood_type")
+    var bloodType: String?,
+    var systolik: Int?,
+    var diastolik: Int?,
+){
+    @PrimaryKey(autoGenerate = true)
+    var UserReportId:Int = 0
+}
+
+@Entity
 data class Pill (
     val name: String?,
     val frequency: String?,
     val time: String?,
+){
+    @PrimaryKey(autoGenerate = true)
+    var pillId:Int = 0
+}
+
+@Entity(primaryKeys = ["userId", "pillId"])
+data class UserPillCrossRef(
+    val userId:Long,
+    val pillId:Long
+)
+
+data class UserWithPills(
+    @Embedded val user:User,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "pillId",
+        associateBy = Junction(UserPillCrossRef::class)
+    )
+    val pill:List<Pill>
 )

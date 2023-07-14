@@ -1,314 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@null"
-    tools:context=".view.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="user"
+            type="com.example.uts_160420136.model.User" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:background="@null"
+        tools:context=".view.HomeFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/textHalo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:text="Hello, Welcome Back"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardUserHomeImage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="12dp"
-                android:clickable="false"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textNameUserHome"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textHalo">
+                <TextView
+                    android:id="@+id/textHalo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Hello, Welcome Back"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardUserHomeImage"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="12dp"
+                    android:clickable="false"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textNameUserHome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textHalo">
 
-                    <ImageView
-                        android:id="@+id/imageUserHome"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/baseline_person_24" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ProgressBar
-                        android:id="@+id/progressUserHomeBar"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageUserHome"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/imageUserHome"
-                        app:layout_constraintTop_toTopOf="@+id/imageUserHome" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/imageUserHome"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:scaleType="centerCrop"
+                            imageUrl="@{user.photoUrl}"
+                            progressBar="@{progressUserHomeBar}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/baseline_person_24" />
 
-            </androidx.cardview.widget.CardView>
+                        <ProgressBar
+                            android:id="@+id/progressUserHomeBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageUserHome"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/imageUserHome"
+                            app:layout_constraintTop_toTopOf="@+id/imageUserHome" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textNameUserHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="..."
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textHalo"
-                app:layout_constraintTop_toBottomOf="@+id/textHalo" />
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardFeelHome"
-                android:layout_width="0dp"
-                android:layout_height="135dp"
-                android:layout_marginTop="32dp"
-                app:cardBackgroundColor="@color/purple_700"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toEndOf="@+id/cardUserHomeImage"
-                app:layout_constraintStart_toStartOf="@+id/textNameUserHome"
-                app:layout_constraintTop_toBottomOf="@+id/textNameUserHome">
+                <TextView
+                    android:id="@+id/textNameUserHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.name}"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textHalo"
+                    app:layout_constraintTop_toBottomOf="@+id/textHalo" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFeelHome"
+                    android:layout_width="0dp"
+                    android:layout_height="135dp"
+                    android:layout_marginTop="32dp"
+                    app:cardBackgroundColor="@color/purple_700"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardUserHomeImage"
+                    app:layout_constraintStart_toStartOf="@+id/textNameUserHome"
+                    app:layout_constraintTop_toBottomOf="@+id/textNameUserHome">
 
-                    <TextView
-                        android:id="@+id/textHowDoYouFeel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="32dp"
-                        android:text="How do you feel?"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textHowDoYouFeel2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fill out your medical\nRight now"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        android:textStyle="normal"
-                        app:layout_constraintStart_toStartOf="@+id/textHowDoYouFeel"
-                        app:layout_constraintTop_toBottomOf="@+id/textHowDoYouFeel" />
+                        <TextView
+                            android:id="@+id/textHowDoYouFeel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="32dp"
+                            android:text="How do you feel?"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
-                        android:id="@+id/buttonFeelInformation"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:backgroundTint="@color/purple_500"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:text="Get Started"
-                        android:textAllCaps="false"
-                        android:textSize="12sp"
-                        app:cornerRadius="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/textHowDoYouFeel"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textHowDoYouFeel"
-                        app:layout_constraintTop_toBottomOf="@+id/textHowDoYouFeel2" />
+                        <TextView
+                            android:id="@+id/textHowDoYouFeel2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fill out your medical\nRight now"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="@+id/textHowDoYouFeel"
+                            app:layout_constraintTop_toBottomOf="@+id/textHowDoYouFeel" />
 
-                    <ImageView
-                        android:id="@+id/imageWomenDoctor"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="4dp"
-                        android:src="@drawable/women_doctor"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textHowDoYouFeel2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <Button
+                            android:id="@+id/buttonFeelInformation"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:backgroundTint="@color/purple_500"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:text="Get Started"
+                            android:textAllCaps="false"
+                            android:textSize="12sp"
+                            app:cornerRadius="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textHowDoYouFeel"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/textHowDoYouFeel"
+                            app:layout_constraintTop_toBottomOf="@+id/textHowDoYouFeel2" />
 
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/imageWomenDoctor"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="4dp"
+                            android:src="@drawable/women_doctor"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textHowDoYouFeel2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textNameUserHome2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Our Services"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/cardFeelHome"
-                app:layout_constraintTop_toBottomOf="@+id/cardFeelHome" />
+                </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/buttonNotification"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/baseline_notifications_24"
-                app:iconGravity="textTop"
-                app:iconPadding="0dp"
-                app:iconSize="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardUserHomeImage"
-                app:layout_constraintEnd_toStartOf="@+id/cardUserHomeImage"
-                app:layout_constraintTop_toTopOf="@+id/cardUserHomeImage"
-                app:strokeWidth="0dp" />
+                <TextView
+                    android:id="@+id/textNameUserHome2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Our Services"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/cardFeelHome"
+                    app:layout_constraintTop_toBottomOf="@+id/cardFeelHome" />
 
-            <Button
-                android:id="@+id/buttonGeneral"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginTop="12dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="General\nCheck Up"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/general_checkup"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintStart_toStartOf="@+id/textNameUserHome2"
-                app:layout_constraintTop_toBottomOf="@+id/textNameUserHome2" />
+                <Button
+                    android:id="@+id/buttonNotification"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/baseline_notifications_24"
+                    app:iconGravity="textTop"
+                    app:iconPadding="0dp"
+                    app:iconSize="32dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardUserHomeImage"
+                    app:layout_constraintEnd_toStartOf="@+id/cardUserHomeImage"
+                    app:layout_constraintTop_toTopOf="@+id/cardUserHomeImage"
+                    app:strokeWidth="0dp" />
 
-            <Button
-                android:id="@+id/buttonDental"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="Dental\nCheck Up"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/dental_checkup"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintEnd_toStartOf="@+id/buttonMedical"
-                app:layout_constraintStart_toEndOf="@+id/buttonGeneral"
-                app:layout_constraintTop_toTopOf="@+id/buttonGeneral" />
+                <Button
+                    android:id="@+id/buttonGeneral"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginTop="12dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="General\nCheck Up"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/general_checkup"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintStart_toStartOf="@+id/textNameUserHome2"
+                    app:layout_constraintTop_toBottomOf="@+id/textNameUserHome2" />
 
-            <Button
-                android:id="@+id/buttonMedical"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="Medical\nCheck Up"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/baseline_medical_services_24"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintEnd_toEndOf="@+id/cardFeelHome"
-                app:layout_constraintTop_toTopOf="@+id/buttonDental" />
+                <Button
+                    android:id="@+id/buttonDental"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="Dental\nCheck Up"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/dental_checkup"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonMedical"
+                    app:layout_constraintStart_toEndOf="@+id/buttonGeneral"
+                    app:layout_constraintTop_toTopOf="@+id/buttonGeneral" />
 
-            <Button
-                android:id="@+id/buttonCovid"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginTop="24dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="Covid 19\nTest"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/covid_test"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintStart_toStartOf="@+id/buttonGeneral"
-                app:layout_constraintTop_toBottomOf="@+id/buttonGeneral" />
+                <Button
+                    android:id="@+id/buttonMedical"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="Medical\nCheck Up"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/baseline_medical_services_24"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardFeelHome"
+                    app:layout_constraintTop_toTopOf="@+id/buttonDental" />
 
-            <Button
-                android:id="@+id/buttonOnlineShop"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginStart="240dp"
-                android:layout_marginTop="24dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="Online Shop"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/sell"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintEnd_toEndOf="@+id/buttonMedical"
-                app:layout_constraintHorizontal_bias="0.973"
-                app:layout_constraintStart_toStartOf="@+id/buttonGeneral"
-                app:layout_constraintTop_toBottomOf="@+id/buttonMedical" />
+                <Button
+                    android:id="@+id/buttonCovid"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginTop="24dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="Covid 19\nTest"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/covid_test"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintStart_toStartOf="@+id/buttonGeneral"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonGeneral" />
 
-            <Button
-                android:id="@+id/buttonLab"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginTop="24dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="8dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="8dp"
-                android:text="Lab"
-                android:textAllCaps="false"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/laboratorium"
-                app:iconGravity="top"
-                app:iconSize="30dp"
-                app:layout_constraintEnd_toEndOf="@+id/buttonDental"
-                app:layout_constraintHorizontal_bias="0.378"
-                app:layout_constraintStart_toStartOf="@+id/buttonDental"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDental" />
+                <Button
+                    android:id="@+id/buttonOnlineShop"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginTop="24dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="Online Shop"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/sell"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonMedical"
+                    app:layout_constraintHorizontal_bias="0.973"
+                    app:layout_constraintStart_toStartOf="@+id/buttonGeneral"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonMedical" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</FrameLayout>
+                <Button
+                    android:id="@+id/buttonLab"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginTop="24dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="8dp"
+                    android:text="Lab"
+                    android:textAllCaps="false"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/laboratorium"
+                    app:iconGravity="top"
+                    app:iconSize="30dp"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonDental"
+                    app:layout_constraintHorizontal_bias="0.378"
+                    app:layout_constraintStart_toStartOf="@+id/buttonDental"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonDental" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </FrameLayout>
+</layout>

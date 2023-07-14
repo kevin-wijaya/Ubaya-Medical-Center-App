@@ -10,43 +10,29 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.uts_160420136.model.Pill
 import com.example.uts_160420136.model.UserReport
+import com.example.uts_160420136.model.UserWithPills
+import com.example.uts_160420136.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ListPillViewModel (application: Application): AndroidViewModel(application) {
-    val pillsLD = MutableLiveData<List<Pill>>()
+class ListPillViewModel (application: Application): AndroidViewModel(application), CoroutineScope {
+    val userWithPillsLD = MutableLiveData<List<UserWithPills>>()
     val loadingDoneLD = MutableLiveData<Boolean>()
     val loadingErrorLD = MutableLiveData<Boolean>()
 
-    private val TAG = "listPillsTag" //identifier pada string request
-    private var queue: RequestQueue?= null
+    private var job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 
-    fun load() {
-        loadingDoneLD.value = false
-        loadingErrorLD.value = false
-
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://kevinwijaya.000webhostapp.com/ANMP/UTS/json.php" +
-                "?T0KEN=ANMPUTS160420136KEVINWIJAYA&4CCESS=PILL"
-        val stringRequest = StringRequest(Request.Method.GET, url,
-            { response ->
-                loadingDoneLD.value = true
-                val sType = object : TypeToken<List<Pill>>() { }.type
-                val result = Gson().fromJson<List<Pill>>(response, sType)
-                pillsLD.value = result
-                Log.d("volley", response.toString())
-            },
-            { error ->
-                loadingDoneLD.value = true
-                loadingErrorLD.value = true
-                Log.d("volley", error.toString())
-            })
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
+    fun load(id:String) {
+        launch {
+            val db = buildDb(getApplication())
+            userWithPillsLD.postValue(db.Dao().getUserPill(id))
+        }
     }
 }

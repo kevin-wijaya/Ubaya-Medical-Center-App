@@ -22,7 +22,7 @@ class PillListAdapter(val pillList: ArrayList<Pill>): RecyclerView.Adapter<PillL
         val inflater = LayoutInflater.from(parent.context)
         val v = inflater.inflate(R.layout.pill_list_item, parent, false)
 
-        return PillListAdapter.PillViewHolder(v)
+        return PillViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: PillViewHolder, position: Int) {

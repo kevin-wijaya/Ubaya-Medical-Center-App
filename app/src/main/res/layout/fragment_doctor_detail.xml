@@ -1,393 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.DoctorDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="doctor"
+            type="com.example.uts_160420136.model.Doctor" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        tools:context=".view.DoctorDetailFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/textSpecialistDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Medicine Specialist"
-                android:textColor="#5f5f5f"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textDoctorNameDetail"
-                app:layout_constraintStart_toStartOf="@+id/textDoctorNameDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textDoctorNameDetail" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textDoctorNameDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
-                android:gravity="center"
-                android:text="..."
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardDoctorDetailImage" />
+                <TextView
+                    android:id="@+id/textSpecialistDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{doctor.specialist}"
+                    android:textColor="#5f5f5f"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textDoctorNameDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textDoctorNameDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textDoctorNameDetail" />
 
-            <TextView
-                android:id="@+id/textBackgroundDetail"
-                android:layout_width="0dp"
-                android:layout_height="220dp"
-                android:background="@color/purple_700"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textDoctorNameDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center"
+                    android:text="@{doctor.name}"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardDoctorDetailImage" />
 
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDoctorDetailImage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="70dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageDoctorDetail"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:src="@drawable/baseline_person_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ProgressBar
-                        android:id="@+id/progressDetailBar"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDoctorExperience"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textLabelExperienceDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Experience"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textExperienceDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="0 Years"
-                        android:textColor="@color/purple_700"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelExperienceDetail" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDoctorPatients"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardDoctorRatings"
-                app:layout_constraintStart_toEndOf="@+id/cardDoctorExperience"
-                app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textLabelPatientsDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Patients"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textPatientsDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="0"
-                        android:textColor="@color/purple_700"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelPatientsDetail" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardDoctorRatings"
-                android:layout_width="109dp"
-                android:layout_height="89dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textLabelRatingDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Rating"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textRatingDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="100%"
-                        android:textColor="@color/purple_700"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelRatingDetail" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textLabelBioDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Bio"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/cardDoctorExperience"
-                app:layout_constraintTop_toBottomOf="@+id/cardDoctorExperience" />
-
-            <TextView
-                android:id="@+id/textBioDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl elit. Sed ut suscipit ante, id varius urna. Pellentesque posuere eget dolor ut suscipit. Nulla ornare quam vitae felis malesuada elementum. Sed sagittis enim in convallis vestibulum. Maecenas ac est id est aliquam dignissim. Suspendisse pulvinar nisl justo, in dignissim sapien blandit nec. Sed fermentum ipsum sit amet lectus lacinia aliquet. Suspendisse bibendum magna eu nunc fermentum blandit."
-                android:textColor="#5F5F5F"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/cardDoctorRatings"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textLabelBioDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textLabelBioDetail" />
-
-            <TextView
-                android:id="@+id/textLabelEducationsDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Educations"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textBioDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textBioDetail" />
-
-            <TextView
-                android:id="@+id/textEducationsDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Sarjana S1 Kesehatan Masyarakat, Universitas Gadjah Mada, 2014-2018\nMagister Kedokteran, Spesialis Anestesiologi dan Reanimasi, Universitas Diponegoro, 2023-2025"
-                android:textColor="#5F5F5F"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/cardDoctorRatings"
-                app:layout_constraintStart_toStartOf="@+id/textLabelEducationsDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textLabelEducationsDetail" />
-
-            <TextView
-                android:id="@+id/textLabelAddressDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Address"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textEducationsDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textEducationsDetail" />
-
-            <TextView
-                android:id="@+id/textAddressDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Jakarta, Indonesia"
-                android:textColor="#5F5F5F"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textEducationsDetail"
-                app:layout_constraintStart_toStartOf="@+id/textLabelAddressDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textLabelAddressDetail" />
-
-            <TextView
-                android:id="@+id/textLabelAppointmentDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Next Free Appointment"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textAddressDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textAddressDetail" />
-
-            <TextView
-                android:id="@+id/textDateAppointmentDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/baseline_date_range_24"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="12 Jan 2020"
-                android:textColor="#5F5F5F"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textLabelAppointmentDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textLabelAppointmentDetail" />
+                <TextView
+                    android:id="@+id/textBackgroundDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="220dp"
+                    android:background="@color/purple_700"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/textTimeAppointmentDetail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:drawableLeft="@drawable/baseline_access_time_24"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="06.00 PM"
-                android:textColor="#5F5F5F"
-                android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/textDateAppointmentDetail"
-                app:layout_constraintTop_toTopOf="@+id/textDateAppointmentDetail" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDoctorDetailImage"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="70dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/buttonChat"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="32dp"
-                android:gravity="center|left"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Chat"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/baseline_chat_bubble_24"
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconSize="25dp"
-                app:layout_constraintEnd_toEndOf="@+id/textAddressDetail"
-                app:layout_constraintStart_toStartOf="@+id/textDateAppointmentDetail"
-                app:layout_constraintTop_toBottomOf="@+id/textDateAppointmentDetail"
-                app:strokeColor="@color/purple_700"
-                app:strokeWidth="1dp" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/buttonMakeAppointment"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="32dp"
-                android:gravity="center|left"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Make Appointment"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/baseline_menu_book_24"
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/buttonChat"
-                app:layout_constraintStart_toStartOf="@+id/buttonChat"
-                app:layout_constraintTop_toBottomOf="@+id/buttonChat"
-                app:strokeColor="@color/purple_700"
-                app:strokeWidth="1dp" />
+                        <ImageView
+                            android:id="@+id/imageDoctorDetail"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/baseline_person_24"
+                            imageUrl="@{doctor.photoUrl}"
+                            progressBar="@{progressDetailBar}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressDetailBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDoctorExperience"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textLabelExperienceDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Experience"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textExperienceDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text='@{doctor.experience.toString() + " Years"}'
+                            android:textColor="@color/purple_700"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelExperienceDetail" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDoctorPatients"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cardDoctorRatings"
+                    app:layout_constraintStart_toEndOf="@+id/cardDoctorExperience"
+                    app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textLabelPatientsDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Patients"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textPatientsDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="@{doctor.patients.toString()}"
+                            android:textColor="@color/purple_700"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelPatientsDetail" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDoctorRatings"
+                    android:layout_width="109dp"
+                    android:layout_height="89dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSpecialistDetail">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textLabelRatingDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Rating"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textRatingDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text='@{doctor.rating.toString() + " %"}'
+                            android:textColor="@color/purple_700"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelRatingDetail" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textLabelBioDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Bio"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/cardDoctorExperience"
+                    app:layout_constraintTop_toBottomOf="@+id/cardDoctorExperience" />
+
+                <TextView
+                    android:id="@+id/textBioDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{doctor.bio}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardDoctorRatings"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textLabelBioDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabelBioDetail" />
+
+                <TextView
+                    android:id="@+id/textLabelEducationsDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Educations"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textBioDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textBioDetail" />
+
+                <TextView
+                    android:id="@+id/textEducationsDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{doctor.educations}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardDoctorRatings"
+                    app:layout_constraintStart_toStartOf="@+id/textLabelEducationsDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabelEducationsDetail" />
+
+                <TextView
+                    android:id="@+id/textLabelAddressDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Address"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textEducationsDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textEducationsDetail" />
+
+                <TextView
+                    android:id="@+id/textAddressDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{doctor.address}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textEducationsDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textLabelAddressDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabelAddressDetail" />
+
+                <TextView
+                    android:id="@+id/textLabelAppointmentDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Next Free Appointment"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textAddressDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textAddressDetail" />
+
+                <TextView
+                    android:id="@+id/textDateAppointmentDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/baseline_date_range_24"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="@{doctor.appointmentDate}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/textLabelAppointmentDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabelAppointmentDetail" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/textTimeAppointmentDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:drawableLeft="@drawable/baseline_access_time_24"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="@{doctor.appointmentTime}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@+id/textDateAppointmentDetail"
+                    app:layout_constraintTop_toTopOf="@+id/textDateAppointmentDetail" />
 
-</FrameLayout>
+                <Button
+                    android:id="@+id/buttonChat"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center|left"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Chat"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/baseline_chat_bubble_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconSize="25dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textAddressDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textDateAppointmentDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textDateAppointmentDetail"
+                    app:strokeColor="@color/purple_700"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/buttonMakeAppointment"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center|left"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Make Appointment"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/baseline_menu_book_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconSize="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonChat"
+                    app:layout_constraintStart_toStartOf="@+id/buttonChat"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonChat"
+                    app:strokeColor="@color/purple_700"
+                    app:strokeWidth="1dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</layout>
