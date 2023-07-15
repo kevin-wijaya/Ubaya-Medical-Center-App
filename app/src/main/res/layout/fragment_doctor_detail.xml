@@ -7,6 +7,12 @@
         <variable
             name="doctor"
             type="com.example.uts_160420136.model.Doctor" />
+        <variable
+            name="chatlistener"
+            type="com.example.uts_160420136.util.ButtonChatDoctor" />
+        <variable
+            name="appointmentlistener"
+            type="com.example.uts_160420136.util.ButtonMakeAppointment" />
     </data>
 
     <FrameLayout
@@ -327,7 +333,7 @@
                     android:drawableLeft="@drawable/baseline_date_range_24"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:text="@{doctor.appointmentDate}"
+                    android:text="@{doctor.availableAppointmentDate}"
                     android:textColor="#5F5F5F"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/textLabelAppointmentDetail"
@@ -342,7 +348,7 @@
                     android:drawableLeft="@drawable/baseline_access_time_24"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:text="@{doctor.appointmentTime}"
+                    android:text="@{doctor.availableAppointmentTime}"
                     android:textColor="#5F5F5F"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/textDateAppointmentDetail"
@@ -358,6 +364,8 @@
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:text="Chat"
+                    android:tag="@{doctor.doctorId}"
+                    android:onClick="@{chatlistener::onClickChat}"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     app:cornerRadius="15dp"
@@ -382,6 +390,8 @@
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:text="Make Appointment"
+                    android:tag="@{doctor.doctorId}"
+                    android:onClick="@{appointmentlistener::onClickAppointment}"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     app:cornerRadius="15dp"

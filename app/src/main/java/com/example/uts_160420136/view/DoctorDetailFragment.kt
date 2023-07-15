@@ -19,12 +19,19 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.FragmentDoctorDetailBinding
+import com.example.uts_160420136.util.ButtonChatDoctor
+import com.example.uts_160420136.util.ButtonMakeAppointment
 import com.example.uts_160420136.util.loadImage
 import com.example.uts_160420136.viewmodel.DetailDoctorViewModel
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Date
 
-class DoctorDetailFragment : Fragment() {
+class DoctorDetailFragment : Fragment(), ButtonChatDoctor, ButtonMakeAppointment {
     private lateinit var viewModel: DetailDoctorViewModel
     private lateinit var dataBinding:FragmentDoctorDetailBinding
+    var doctorId = ""
+    val userId = "1"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,9 +43,13 @@ class DoctorDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var id = DoctorDetailFragmentArgs.fromBundle(requireArguments()).doctorId
+        doctorId = DoctorDetailFragmentArgs.fromBundle(requireArguments()).doctorId!!
         viewModel = ViewModelProvider(this).get(DetailDoctorViewModel::class.java)
-        viewModel.load(id!!)
+        viewModel.load(doctorId)
+        viewModel.loadappointment(userId)
+
+        dataBinding.chatlistener = this
+        dataBinding.appointmentlistener = this
 
         observeViewModel()
     }
@@ -47,5 +58,31 @@ class DoctorDetailFragment : Fragment() {
         viewModel.doctorLD.observe(viewLifecycleOwner, Observer {
             dataBinding.doctor = it
         })
+        viewModel.appointmentLD.observe(viewLifecycleOwner, Observer {
+            if(it.user.appointmentUser == null){
+                dataBinding.buttonChat.isEnabled = false
+                dataBinding.buttonMakeAppointment.isEnabled = true
+            }
+            else{
+                if (it.user.doctorId.toString() == doctorId){
+                    dataBinding.buttonChat.isEnabled = true
+                    dataBinding.buttonMakeAppointment.isEnabled = false
+                }
+                else{
+                    dataBinding.buttonChat.isEnabled = false
+                    dataBinding.buttonMakeAppointment.isEnabled = false
+                }
+            }
+        })
+    }
+
+    override fun onClickChat(view: View) {
+        val action = DoctorDetailFragmentDirections.actionChatFragment(userId, view.tag.toString())
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    override fun onClickAppointment(view: View) {
+        val action = DoctorDetailFragmentDirections.actionAppointmentFragment(userId, view.tag.toString())
+        Navigation.findNavController(view).navigate(action)
     }
 }

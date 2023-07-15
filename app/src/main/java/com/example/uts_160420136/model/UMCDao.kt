@@ -36,5 +36,23 @@ interface UMCDao {
     @Transaction
     @Query("Select * FROM 'user' WHERE userId=:id")
     fun getUserReport(id:String) : UserWithReport
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addReport(report: Report)
+
+    @Transaction
+    @Delete
+    fun deleteReport(report: Report)
     //USER WITH REPORT
+
+    //USER WITH DOCTOR APPOINTMENT
+    @Transaction
+    @Query("SELECT * FROM 'user' WHERE userId=:id")
+    fun getUserAppointment(id:String) : UserWithDoctorAppointment
+
+    @Transaction
+    @Query("UPDATE 'user' SET doctorId=:doctorId , appointmentUser=:dateTimeAppointment WHERE userId=:userId")
+    fun addAppointment(userId:String, doctorId:String?, dateTimeAppointment:String?)
+    //USER WITH DOCTOR APPOINTMENT
 }

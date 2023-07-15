@@ -37,6 +37,7 @@ fun buildDb(context: Context): UMCDatabase = Room.databaseBuilder(context, UMCDa
 
 //Migration 1: nambah tabel user pills (m:n) + relationship
 //Migration 2: nambah kolom di tabel report (userId) 1:1 + relationship
+//Migration 3: nambah kolom di tabel user (doctorId) 1:m + relationship
 val MIGRATION_1_2 = object: Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("")

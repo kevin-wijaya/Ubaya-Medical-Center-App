@@ -60,7 +60,9 @@ class HomeFragment : Fragment() {
                     "0892131381301",
                     "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
                     "A",
-                    "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc"
+                    "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
+                    null,
+                    null
                 )
                 viewModel.addUser(user)
             }

@@ -64,12 +64,26 @@
         android:id="@+id/appointmentFragment"
         android:name="com.example.uts_160420136.view.AppointmentFragment"
         android:label="Appointment"
-        tools:layout="@layout/fragment_appointment" />
+        tools:layout="@layout/fragment_appointment" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="doctorId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.uts_160420136.view.ChatFragment"
         android:label="Chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="doctorId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.uts_160420136.view.LoginFragment"

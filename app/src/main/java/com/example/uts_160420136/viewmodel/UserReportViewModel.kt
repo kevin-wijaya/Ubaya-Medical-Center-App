@@ -3,6 +3,7 @@ package com.example.uts_160420136.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.uts_160420136.model.Report
 import com.example.uts_160420136.model.UserWithReport
 import com.example.uts_160420136.util.buildDb
 import kotlinx.coroutines.CoroutineScope
@@ -25,4 +26,17 @@ class UserReportViewModel (application: Application): AndroidViewModel(applicati
         }
     }
 
+    fun addReport(report: Report){
+        launch {
+            val db = buildDb(getApplication())
+            db.Dao().addReport(report)
+        }
+    }
+
+    fun deleteReport(report: Report){
+        launch {
+            val db = buildDb(getApplication())
+            db.Dao().deleteReport(report)
+        }
+    }
 }

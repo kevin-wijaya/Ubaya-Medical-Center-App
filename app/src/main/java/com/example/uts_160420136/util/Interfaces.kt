@@ -10,3 +10,11 @@ interface ButtonEditUser{
 interface ButtonDetailDoctor{
     fun onClick(view: View)
 }
+
+interface ButtonChatDoctor{
+    fun onClickChat(view: View)
+}
+
+interface ButtonMakeAppointment{
+    fun onClickAppointment(view: View)
+}

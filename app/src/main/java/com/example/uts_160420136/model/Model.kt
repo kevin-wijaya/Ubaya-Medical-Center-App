@@ -17,8 +17,8 @@ data class Doctor (
     var experience: Int?,
     var patients: Int?,
     var rating: Double?,
-    var appointmentDate: String?,
-    var appointmentTime: String?,
+    var availableAppointmentDate: String?,
+    var availableAppointmentTime: String?,
     var photoUrl: String?,
 ){
     @PrimaryKey(autoGenerate = true)
@@ -36,6 +36,8 @@ data class User (
     var address: String?,
     var bloodType: String?,
     var photoUrl: String?,
+    var doctorId: Int?,
+    var appointmentUser: String?
 ){
     @PrimaryKey(autoGenerate = true)
     var userId:Int = 0
@@ -43,12 +45,12 @@ data class User (
 
 @Entity
 data class Report (
-    var userId: Int?,
     var heartRate: Int?,
     var thrombocyte: Int?,
     var bloodType: String?,
     var systolik: Int?,
     var diastolik: Int?,
+    var userId: Int?,
 ){
     @PrimaryKey(autoGenerate = true)
     var reportId:Int = 0
@@ -87,4 +89,13 @@ data class UserWithReport(
         entityColumn = "userId"
     )
     val report:Report
+)
+
+data class UserWithDoctorAppointment(
+    @Embedded val user: User,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "doctorId"
+    )
+    val doctor: Doctor
 )

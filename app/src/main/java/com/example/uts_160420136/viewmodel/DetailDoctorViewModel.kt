@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.uts_160420136.model.Doctor
+import com.example.uts_160420136.model.UserWithDoctorAppointment
 import com.example.uts_160420136.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -21,6 +22,7 @@ import kotlin.coroutines.CoroutineContext
 
 class DetailDoctorViewModel(application: Application): AndroidViewModel(application), CoroutineScope{
     val doctorLD = MutableLiveData<Doctor>()
+    val appointmentLD = MutableLiveData<UserWithDoctorAppointment>()
 
     private var job = Job()
     override val coroutineContext: CoroutineContext
@@ -30,6 +32,13 @@ class DetailDoctorViewModel(application: Application): AndroidViewModel(applicat
         launch {
             val db = buildDb(getApplication())
             doctorLD.postValue(db.Dao().selectDoctorById(id))
+        }
+    }
+
+    fun loadappointment(id:String){
+        launch {
+            val db = buildDb(getApplication())
+            appointmentLD.postValue(db.Dao().getUserAppointment(id))
         }
     }
 
