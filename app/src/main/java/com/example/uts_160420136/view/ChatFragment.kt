@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.FragmentChatBinding
 import com.example.uts_160420136.model.Report
@@ -45,6 +46,7 @@ class ChatFragment : Fragment() {
                 "Done" -> {
                     viewModelAppointment.addAppointment(userId, null, null)
                     Toast.makeText(context, "Appointment Done!", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(view).popBackStack()
                 }
                 "Make Report" -> {
                     val report = Report(
