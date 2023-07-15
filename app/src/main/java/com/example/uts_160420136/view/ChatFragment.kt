@@ -44,6 +44,7 @@ class ChatFragment : Fragment() {
                 "Halo" -> Toast.makeText(context, "Halo Juga", Toast.LENGTH_SHORT).show()
                 "Done" -> {
                     viewModelAppointment.addAppointment(userId, null, null)
+                    Toast.makeText(context, "Appointment Done!", Toast.LENGTH_SHORT).show()
                 }
                 "Make Report" -> {
                     val report = Report(
@@ -55,6 +56,7 @@ class ChatFragment : Fragment() {
                         userId.toInt()
                     )
                     viewModelReport.addReport(report)
+                    Toast.makeText(context, "Report Added!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

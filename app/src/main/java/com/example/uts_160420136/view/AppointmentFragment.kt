@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.Navigation
 import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.FragmentAppointmentBinding
 import com.example.uts_160420136.viewmodel.AppointmentiewModel
@@ -78,6 +79,8 @@ class AppointmentFragment : Fragment() {
 
         dataBinding.buttonBookNow.setOnClickListener {
             viewModel.addAppointment(userId, doctorId, "ada")
+            Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(view).popBackStack()
         }
     }
 }
