@@ -28,14 +28,14 @@ class DetailDoctorViewModel(application: Application): AndroidViewModel(applicat
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun load(id: String) {
+    fun load(id: Int) {
         launch {
             val db = buildDb(getApplication())
             doctorLD.postValue(db.Dao().selectDoctorById(id))
         }
     }
 
-    fun loadappointment(id:String){
+    fun loadappointment(id:Int){
         launch {
             val db = buildDb(getApplication())
             appointmentLD.postValue(db.Dao().getUserAppointment(id))

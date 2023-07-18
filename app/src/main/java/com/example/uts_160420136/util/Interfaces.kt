@@ -18,3 +18,7 @@ interface ButtonChatDoctor{
 interface ButtonMakeAppointment{
     fun onClickAppointment(view: View)
 }
+
+interface ButtonBookNow{
+    fun onClickBook(view: View)
+}

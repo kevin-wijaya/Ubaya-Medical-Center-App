@@ -50,22 +50,14 @@ class SearchFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.doctorsLD.observe(viewLifecycleOwner, Observer {
-            doctorListAdapter.updateDoctorList(it)
-        })
-
-        viewModel.loadingErrorLD.observe(viewLifecycleOwner, Observer{
-            dataBinding.textSearchError.visibility = if(it) View.VISIBLE else View.GONE
-            Log.d("test1", it.toString())
-        })
-
-        viewModel.loadingDoneLD.observe(viewLifecycleOwner, Observer{
-            Log.d("test1", it.toString())
-            if(it) {
-                dataBinding.progressLoadDoctors.visibility = View.GONE
-                dataBinding.recyclerViewDoctors.visibility = View.VISIBLE
+            dataBinding.progressLoadDoctors.visibility = View.GONE
+            dataBinding.recyclerViewDoctors.visibility = View.VISIBLE
+            if(it != null){
+                dataBinding.textSearchError.visibility = View.GONE
+                doctorListAdapter.updateDoctorList(it)
             }
-            else {
-                dataBinding.progressLoadDoctors.visibility = View.VISIBLE
+            else{
+                dataBinding.textSearchError.visibility = View.VISIBLE
                 dataBinding.recyclerViewDoctors.visibility = View.GONE
             }
         })

@@ -2,28 +2,32 @@ package com.example.uts_160420136.view
 
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.CalendarView
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.Navigation
 import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.FragmentAppointmentBinding
+import com.example.uts_160420136.util.ButtonBookNow
 import com.example.uts_160420136.viewmodel.AppointmentiewModel
 import java.text.SimpleDateFormat
 
-class AppointmentFragment : Fragment() {
+class AppointmentFragment : Fragment(), ButtonBookNow {
 
     private lateinit var viewModel:AppointmentiewModel
     private lateinit var dataBinding:FragmentAppointmentBinding
+
+    var dayofmonths = 0
+    var monthss = 0
+    var yearss = 0
+
+    var doctorId = 0
+    var userId = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,8 +39,8 @@ class AppointmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val doctorId = AppointmentFragmentArgs.fromBundle(requireArguments()).doctorId
-        val userId = AppointmentFragmentArgs.fromBundle(requireArguments()).userId
+        doctorId = AppointmentFragmentArgs.fromBundle(requireArguments()).doctorId
+        userId = AppointmentFragmentArgs.fromBundle(requireArguments()).userId
 
         viewModel = ViewModelProvider(this).get(AppointmentiewModel::class.java)
 
@@ -49,7 +53,7 @@ class AppointmentFragment : Fragment() {
         val timesFormat = SimpleDateFormat("HH")
         val times = timesFormat.format(d.time)
 
-        var arr = arrs.toMutableList()
+        val arr = arrs.toMutableList()
         if (times < "12" && times >= "10"){
             arr.removeAt(0)
         } else if (times < "14" && times >= "12"){
@@ -72,15 +76,36 @@ class AppointmentFragment : Fragment() {
             arr.removeAt(0)
         }
 
-        val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, arr)
+        var spinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, arr)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_layout)
         dataBinding.spinnerTimeAvailable.adapter = spinnerAdapter
 
+        dataBinding.calendarAppointment.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val sdfDate = SimpleDateFormat("dd")
+            val date = sdfDate.format(dataBinding.calendarAppointment.date)
+            val sdfMonth = SimpleDateFormat("M")
+            val months = sdfMonth.format(dataBinding.calendarAppointment.date)
+            if(dayOfMonth.toString() != date.toString()){
+                spinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, arrs)
+                spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_layout)
+                dataBinding.spinnerTimeAvailable.adapter = spinnerAdapter
+            }
+            else if (dayOfMonth.toString() == date.toString() && month.toString() != months.toString()){
+                spinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, arr)
+                spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_layout)
+                dataBinding.spinnerTimeAvailable.adapter = spinnerAdapter
+            }
 
-        dataBinding.buttonBookNow.setOnClickListener {
-            viewModel.addAppointment(userId, doctorId, "ada")
-            Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
-            Navigation.findNavController(view).popBackStack()
+            dayofmonths = dayOfMonth
+            monthss = month
+            yearss = year
         }
+    }
+
+    override fun onClickBook(view: View) {
+        val time = dataBinding.spinnerTimeAvailable.selectedItem.toString().take(2)
+        viewModel.addAppointment(userId, doctorId, "$dayofmonths-$monthss-$yearss-$time")
+        Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
+        Navigation.findNavController(view).popBackStack()
     }
 }

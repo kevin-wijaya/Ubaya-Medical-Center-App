@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="booklistener"
+            type="com.example.uts_160420136.util.ButtonBookNow" />
     </data>
 
     <FrameLayout
@@ -103,6 +105,7 @@
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:text="Book Now"
+                    android:onClick="@{booklistener::onClickBook}"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     app:cornerRadius="15dp"

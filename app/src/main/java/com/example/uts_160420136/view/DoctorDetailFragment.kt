@@ -30,8 +30,8 @@ import java.util.Date
 class DoctorDetailFragment : Fragment(), ButtonChatDoctor, ButtonMakeAppointment {
     private lateinit var viewModel: DetailDoctorViewModel
     private lateinit var dataBinding:FragmentDoctorDetailBinding
-    var doctorId = ""
-    val userId = "1"
+    var doctorId = 0
+    val userId = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +43,7 @@ class DoctorDetailFragment : Fragment(), ButtonChatDoctor, ButtonMakeAppointment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doctorId = DoctorDetailFragmentArgs.fromBundle(requireArguments()).doctorId!!
+        doctorId = DoctorDetailFragmentArgs.fromBundle(requireArguments()).doctorId
         viewModel = ViewModelProvider(this).get(DetailDoctorViewModel::class.java)
         viewModel.load(doctorId)
         viewModel.loadappointment(userId)
@@ -64,7 +64,7 @@ class DoctorDetailFragment : Fragment(), ButtonChatDoctor, ButtonMakeAppointment
                 dataBinding.buttonMakeAppointment.isEnabled = true
             }
             else{
-                if (it.user.doctorId.toString() == doctorId){
+                if (it.user.doctorId == doctorId){
                     dataBinding.buttonChat.isEnabled = true
                     dataBinding.buttonMakeAppointment.isEnabled = false
                 }
@@ -77,12 +77,12 @@ class DoctorDetailFragment : Fragment(), ButtonChatDoctor, ButtonMakeAppointment
     }
 
     override fun onClickChat(view: View) {
-        val action = DoctorDetailFragmentDirections.actionChatFragment(userId, view.tag.toString())
+        val action = DoctorDetailFragmentDirections.actionChatFragment(userId, view.tag.toString().toInt())
         Navigation.findNavController(view).navigate(action)
     }
 
     override fun onClickAppointment(view: View) {
-        val action = DoctorDetailFragmentDirections.actionAppointmentFragment(userId, view.tag.toString())
+        val action = DoctorDetailFragmentDirections.actionAppointmentFragment(userId, view.tag.toString().toInt())
         Navigation.findNavController(view).navigate(action)
     }
 }

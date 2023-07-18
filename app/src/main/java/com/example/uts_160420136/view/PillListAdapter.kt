@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uts_160420136.R
+import com.example.uts_160420136.databinding.PillListItemBinding
 import com.example.uts_160420136.model.Doctor
 import com.example.uts_160420136.model.Pill
 
 class PillListAdapter(val pillList: ArrayList<Pill>): RecyclerView.Adapter<PillListAdapter.PillViewHolder>(){
-    class PillViewHolder(val view: View):RecyclerView.ViewHolder(view) //inner class
+    class PillViewHolder(val view: PillListItemBinding):RecyclerView.ViewHolder(view.root) //inner class
 
     fun updatePillList(newPillList:List<Pill>) {
         pillList.clear()
@@ -20,17 +22,13 @@ class PillListAdapter(val pillList: ArrayList<Pill>): RecyclerView.Adapter<PillL
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PillViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val v = inflater.inflate(R.layout.pill_list_item, parent, false)
+        val v = DataBindingUtil.inflate<PillListItemBinding>(inflater, R.layout.pill_list_item, parent, false)
 
         return PillViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: PillViewHolder, position: Int) {
-        with(holder.view) {
-            findViewById<TextView>(R.id.textPillName).text = pillList[position].name
-            findViewById<TextView>(R.id.textPillFrequency).text = pillList[position].frequency.toString()
-            findViewById<TextView>(R.id.textPillTime).text = pillList[position].time
-        }
+        holder.view.pill = pillList[position]
     }
 
     override fun getItemCount(): Int {

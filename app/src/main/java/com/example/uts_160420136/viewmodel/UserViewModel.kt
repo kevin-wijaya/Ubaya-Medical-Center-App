@@ -18,7 +18,7 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun load(id:String){
+    fun load(id:Int){
         launch {
             val db = buildDb(getApplication())
             userLD.postValue(db.Dao().selectUser(id))

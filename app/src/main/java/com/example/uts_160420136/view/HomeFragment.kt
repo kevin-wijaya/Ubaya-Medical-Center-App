@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
 
     private lateinit var dataBinding:FragmentHomeBinding
-    private var uid = "1"
+    private var uid = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,25 +47,38 @@ class HomeFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
-            if(it != null){
-                dataBinding.user = it
+            var user1 = User(
+                "Kevin Wijaya",
+                "kevinwijaya",
+                "kevinwijaya",
+                "kevinwijaya@gmail.com",
+                "2002-02-02",
+                "0892131381301",
+                "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
+                "A",
+                "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
+                null,
+                null
+            )
+
+            val user2 = User(
+                "Hendy Ardhana",
+                "hendyardhana",
+                "hendyardhana",
+                "hendyardhana@gmail.com",
+                "2002-12-18",
+                "0892131381301",
+                "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
+                "O",
+                "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
+                null,
+                null
+            )
+            if(it == null){
+                viewModel.addUser(user1)
+                viewModel.addUser(user2)
             }
-            else{
-                val user = User(
-                    "Kevin Wijaya",
-                    "kevinwijaya",
-                    "kevinwijaya",
-                    "kevinwijaya@gmail.com",
-                    "2002-02-02",
-                    "0892131381301",
-                    "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
-                    "A",
-                    "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
-                    null,
-                    null
-                )
-                viewModel.addUser(user)
-            }
+            dataBinding.user = it
         })
     }
 }

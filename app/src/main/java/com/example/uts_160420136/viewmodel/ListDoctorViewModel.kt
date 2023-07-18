@@ -21,16 +21,12 @@ import kotlin.coroutines.CoroutineContext
 
 class ListDoctorViewModel(application: Application):AndroidViewModel(application), CoroutineScope {
     val doctorsLD = MutableLiveData<List<Doctor>>()
-    val loadingDoneLD = MutableLiveData<Boolean>()
-    val loadingErrorLD = MutableLiveData<Boolean>()
 
     private var job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
     fun load() {
-        loadingErrorLD.value = true
-        loadingDoneLD.value = true
         launch {
             val db = buildDb(getApplication())
             doctorsLD.postValue(db.Dao().selectDoctor())

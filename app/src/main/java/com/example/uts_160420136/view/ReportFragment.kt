@@ -10,23 +10,26 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.uts_160420136.R
+import com.example.uts_160420136.databinding.FragmentReportBinding
 import com.example.uts_160420136.util.loadImage
 import com.example.uts_160420136.viewmodel.UserReportViewModel
 import com.example.uts_160420136.viewmodel.UserViewModel
 
 class ReportFragment : Fragment() {
     private lateinit var viewModel: UserReportViewModel
+    private lateinit var dataBinding:FragmentReportBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_report, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,17 +39,15 @@ class ReportFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(UserReportViewModel::class.java)
         viewModel.load(id!!)
 
-        observeViewModel(view)
+        observeViewModel()
     }
 
-    fun observeViewModel(view: View) {
+    fun observeViewModel() {
         viewModel.UserReportLD.observe(viewLifecycleOwner, Observer {
-            with(view) {
-                findViewById<TextView>(R.id.textHeartRate).text = it.report.heartRate.toString()
-                findViewById<TextView>(R.id.textBloodType).text = it.report.bloodType.toString()
-                findViewById<TextView>(R.id.textTrombosit).text = it.report.thrombocyte.toString()
-                findViewById<TextView>(R.id.textSystolik).text = it.report.systolik.toString()
-                findViewById<TextView>(R.id.textDiastolik).text = it.report.diastolik.toString()
+            if (it.report != null){
+                dataBinding.report = it.report
+            } else {
+                Toast.makeText(context, "Report doesn't exist!", Toast.LENGTH_SHORT).show()
             }
         })
     }

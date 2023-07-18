@@ -42,7 +42,7 @@ class DoctorListAdapter(val doctorList: ArrayList<Doctor>):RecyclerView.Adapter<
     }
 
     override fun onClick(view: View) {
-        val action = SearchFragmentDirections.actionDoctorDetailFragment(view.tag.toString())
+        val action = SearchFragmentDirections.actionDoctorDetailFragment(view.tag.toString().toInt())
         Navigation.findNavController(view).navigate(action)
     }
 }

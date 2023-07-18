@@ -9,59 +9,51 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uts_160420136.R
+import com.example.uts_160420136.databinding.FragmentPillBinding
 import com.example.uts_160420136.viewmodel.ListPillViewModel
 
 class PillFragment : Fragment() {
     private lateinit var viewModel: ListPillViewModel
     private var pillListAdapter = PillListAdapter(arrayListOf())
+    private lateinit var dataBinding:FragmentPillBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pill, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_pill, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerViewPill = view.findViewById<RecyclerView>(R.id.recyclerViewPill)
-        val id = "1"
+        val id = PillFragmentArgs.fromBundle(requireArguments()).userId
         viewModel = ViewModelProvider(this).get(ListPillViewModel::class.java)
         viewModel.load(id)
 
         recyclerViewPill.layoutManager = LinearLayoutManager(context)
         recyclerViewPill.adapter = pillListAdapter
 
-        observeViewModel(view)
+        observeViewModel()
     }
 
-    fun observeViewModel(view: View) {
+    fun observeViewModel() {
         viewModel.userWithPillsLD.observe(viewLifecycleOwner, Observer {
+            dataBinding.progressLoadPill.visibility = View.GONE
+            if (it.isEmpty()){
+                dataBinding.textPillError.visibility = View.VISIBLE
+            }
+            else{
+                dataBinding.textPillError.visibility = View.GONE
+            }
             pillListAdapter.updatePillList(it[0].pill)
         })
-
-        viewModel.loadingErrorLD.observe(viewLifecycleOwner, Observer{
-            view.findViewById<TextView>(R.id.textPillError).visibility = if(it) View.VISIBLE else View.GONE
-        })
-
-        viewModel.loadingDoneLD.observe(viewLifecycleOwner, Observer{
-            val recyclerViewPill = view.findViewById<RecyclerView>(R.id.recyclerViewPill)
-            val progressLoadPill = view.findViewById<ProgressBar>(R.id.progressLoadPill)
-            if(it) {
-                progressLoadPill.visibility = View.GONE
-                recyclerViewPill.visibility = View.VISIBLE
-            }
-            else {
-                progressLoadPill.visibility = View.VISIBLE
-                recyclerViewPill.visibility = View.GONE
-            }
-        })
-
     }
 }

@@ -56,9 +56,8 @@
             app:popUpTo="@id/appointmentFragment"
             app:popUpToInclusive="false" />
         <argument
-            android:name="doctor_id"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="doctorId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/appointmentFragment"
@@ -67,10 +66,10 @@
         tools:layout="@layout/fragment_appointment" >
         <argument
             android:name="userId"
-            app:argType="string" />
+            app:argType="integer" />
         <argument
             android:name="doctorId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -79,10 +78,10 @@
         tools:layout="@layout/fragment_chat" >
         <argument
             android:name="userId"
-            app:argType="string" />
+            app:argType="integer" />
         <argument
             android:name="doctorId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -114,9 +113,8 @@
         android:label="Last Check Up Report"
         tools:layout="@layout/fragment_report" >
         <argument
-            android:name="user_id"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -124,13 +122,16 @@
         android:label="Settings"
         tools:layout="@layout/fragment_settings" >
         <argument
-            android:name="user_id"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/pillFragment"
         android:name="com.example.uts_160420136.view.PillFragment"
         android:label="My Pills"
-        tools:layout="@layout/fragment_pill" />
+        tools:layout="@layout/fragment_pill" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

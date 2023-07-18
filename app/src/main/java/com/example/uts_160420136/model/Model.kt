@@ -88,7 +88,7 @@ data class UserWithReport(
         parentColumn = "userId",
         entityColumn = "userId"
     )
-    val report:Report
+    val report:Report?
 )
 
 data class UserWithDoctorAppointment(
@@ -97,5 +97,5 @@ data class UserWithDoctorAppointment(
         parentColumn = "userId",
         entityColumn = "doctorId"
     )
-    val doctor: Doctor
+    val doctor: Doctor?
 )

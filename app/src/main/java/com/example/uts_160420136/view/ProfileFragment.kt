@@ -22,7 +22,7 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
 
     private lateinit var dataBinding : FragmentProfileBinding
-    var uid = "1"
+    var uid = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,16 +38,16 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.load(uid)
 
-        view.findViewById<Button>(R.id.buttonProfileReports).setOnClickListener {
+        dataBinding.buttonProfileReports.setOnClickListener {
             val action = ProfileFragmentDirections.actionReportFragment(uid)
             Navigation.findNavController(it).navigate(action)
         }
-        view.findViewById<Button>(R.id.buttonProfileSettings).setOnClickListener {
+        dataBinding.buttonProfileSettings.setOnClickListener {
             val action = ProfileFragmentDirections.actionSettingsFragment(uid)
             Navigation.findNavController(it).navigate(action)
         }
-        view.findViewById<Button>(R.id.buttonProfilePills).setOnClickListener {
-            val action = ProfileFragmentDirections.actionPillFragment()
+        dataBinding.buttonProfilePills.setOnClickListener {
+            val action = ProfileFragmentDirections.actionPillFragment(uid)
             Navigation.findNavController(it).navigate(action)
         }
 

@@ -36,7 +36,7 @@ class SettingsFragment : Fragment(), ButtonEditUser {
         var id = SettingsFragmentArgs.fromBundle(requireArguments()).userId
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        viewModel.load(id!!)
+        viewModel.load(id)
 
         dataBinding.savelistener = this
 

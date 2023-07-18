@@ -16,7 +16,7 @@ class AppointmentiewModel(application: Application): AndroidViewModel(applicatio
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun addAppointment(userId:String, doctorId:String?, dateTimeAppointment:String?){
+    fun addAppointment(userId:Int, doctorId:Int?, dateTimeAppointment:String?){
         launch {
             val db = buildDb(getApplication())
             db.Dao().addAppointment(userId, doctorId, dateTimeAppointment)

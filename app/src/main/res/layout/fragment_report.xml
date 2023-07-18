@@ -1,328 +1,337 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ReportFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="report"
+            type="com.example.uts_160420136.model.Report" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        tools:context=".view.ReportFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardHeartRate"
-                android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="12dp"
-                app:cardBackgroundColor="#D8E4EC"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHeartRate"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardBackgroundColor="#D8E4EC"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageHeartRate"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textLabelHeartRate"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/vital_sign" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textLabelHeartRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="24dp"
-                        android:text="Heart Rate"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/imageHeartRate"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginBottom="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelHeartRate"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/vital_sign" />
 
-                    <TextView
-                        android:id="@+id/textHeartRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60sp"
-                        android:layout_marginTop="20dp"
-                        android:includeFontPadding="false"
-                        android:text="80"
-                        android:textSize="60sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/textLabelHeartRate"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelHeartRate" />
+                        <TextView
+                            android:id="@+id/textLabelHeartRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="24dp"
+                            android:text="Heart Rate"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textHeartRateUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="bpm"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textHeartRate"
-                        app:layout_constraintStart_toEndOf="@+id/textHeartRate"
-                        app:layout_constraintTop_toTopOf="@+id/textHeartRate" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/textHeartRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60sp"
+                            android:layout_marginTop="20dp"
+                            android:includeFontPadding="false"
+                            android:text="@{report.heartRate.toString()}"
+                            android:textSize="60sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/textLabelHeartRate"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelHeartRate" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardBloodType"
-                android:layout_width="170dp"
-                android:layout_height="178dp"
-                android:layout_marginTop="24dp"
-                app:cardBackgroundColor="#f0d5e0"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintStart_toStartOf="@+id/cardHeartRate"
-                app:layout_constraintTop_toBottomOf="@+id/cardHeartRate">
+                        <TextView
+                            android:id="@+id/textHeartRateUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="bpm"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textHeartRate"
+                            app:layout_constraintStart_toEndOf="@+id/textHeartRate"
+                            app:layout_constraintTop_toTopOf="@+id/textHeartRate" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBloodType"
+                    android:layout_width="170dp"
+                    android:layout_height="178dp"
+                    android:layout_marginTop="24dp"
+                    app:cardBackgroundColor="#f0d5e0"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintStart_toStartOf="@+id/cardHeartRate"
+                    app:layout_constraintTop_toBottomOf="@+id/cardHeartRate">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-                    <TextView
-                        android:id="@+id/textLabelBloodType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Blood Type"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageBloodType" />
+                        <TextView
+                            android:id="@+id/textLabelBloodType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Blood Type"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageBloodType" />
 
-                    <TextView
-                        android:id="@+id/textBloodType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50sp"
-                        android:layout_marginTop="8dp"
-                        android:includeFontPadding="false"
-                        android:text="A"
-                        android:textSize="50sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/textLabelBloodType"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelBloodType" />
+                        <TextView
+                            android:id="@+id/textBloodType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50sp"
+                            android:layout_marginTop="8dp"
+                            android:includeFontPadding="false"
+                            android:text="@{report.bloodType}"
+                            android:textSize="50sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/textLabelBloodType"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelBloodType" />
 
-                    <TextView
-                        android:id="@+id/textLabelBloodUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="+"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textBloodType"
-                        app:layout_constraintStart_toEndOf="@+id/textBloodType"
-                        app:layout_constraintTop_toTopOf="@+id/textBloodType" />
+                        <TextView
+                            android:id="@+id/textLabelBloodUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="+"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textBloodType"
+                            app:layout_constraintStart_toEndOf="@+id/textBloodType"
+                            app:layout_constraintTop_toTopOf="@+id/textBloodType" />
 
-                    <ImageView
-                        android:id="@+id/imageBloodType"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
-                        android:src="@drawable/water_drop"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/imageBloodType"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/water_drop"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTrombosit"
-                android:layout_width="0dp"
-                android:layout_height="178dp"
-                android:layout_marginTop="32dp"
-                app:cardBackgroundColor="#f1e7d3"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintEnd_toEndOf="@+id/cardBloodType"
-                app:layout_constraintHorizontal_bias="0.4"
-                app:layout_constraintStart_toStartOf="@+id/cardBloodType"
-                app:layout_constraintTop_toBottomOf="@+id/cardBloodType">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTrombosit"
+                    android:layout_width="0dp"
+                    android:layout_height="178dp"
+                    android:layout_marginTop="32dp"
+                    app:cardBackgroundColor="#f1e7d3"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardBloodType"
+                    app:layout_constraintHorizontal_bias="0.4"
+                    app:layout_constraintStart_toStartOf="@+id/cardBloodType"
+                    app:layout_constraintTop_toBottomOf="@+id/cardBloodType">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textLabelTrombosit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Thrombocyte"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageTrombosit" />
+                        <TextView
+                            android:id="@+id/textLabelTrombosit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Thrombocyte"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageTrombosit" />
 
-                    <TextView
-                        android:id="@+id/textTrombosit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40sp"
-                        android:layout_marginTop="8dp"
-                        android:includeFontPadding="false"
-                        android:text="150"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/textLabelTrombosit"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelTrombosit" />
+                        <TextView
+                            android:id="@+id/textTrombosit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:layout_marginTop="8dp"
+                            android:includeFontPadding="false"
+                            android:text="@{report.thrombocyte.toString()}"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/textLabelTrombosit"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelTrombosit" />
 
-                    <TextView
-                        android:id="@+id/textLabelTrombositUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="10^3 U/L"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textTrombosit"
-                        app:layout_constraintStart_toEndOf="@+id/textTrombosit"
-                        app:layout_constraintTop_toTopOf="@+id/textTrombosit" />
+                        <TextView
+                            android:id="@+id/textLabelTrombositUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="10^3 U/L"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textTrombosit"
+                            app:layout_constraintStart_toEndOf="@+id/textTrombosit"
+                            app:layout_constraintTop_toTopOf="@+id/textTrombosit" />
 
-                    <ImageView
-                        android:id="@+id/imageTrombosit"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
-                        android:src="@drawable/hematology"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/imageTrombosit"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/hematology"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardBloodPressure"
-                android:layout_width="0dp"
-                android:layout_height="388dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#E7E7E7"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/cardHeartRate"
-                app:layout_constraintHorizontal_bias="0.87"
-                app:layout_constraintStart_toEndOf="@+id/cardBloodType"
-                app:layout_constraintTop_toTopOf="@+id/cardBloodType"
-                app:layout_constraintVertical_bias="0.0">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBloodPressure"
+                    android:layout_width="0dp"
+                    android:layout_height="388dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="24dp"
+                    app:cardBackgroundColor="#E7E7E7"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/cardHeartRate"
+                    app:layout_constraintHorizontal_bias="0.87"
+                    app:layout_constraintStart_toEndOf="@+id/cardBloodType"
+                    app:layout_constraintTop_toTopOf="@+id/cardBloodType"
+                    app:layout_constraintVertical_bias="0.0">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imageBloodPressure"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="24dp"
-                        android:src="@drawable/blood_pressure"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/imageBloodPressure"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/blood_pressure"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textLabelBloodPressure"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Blood Pressure"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageBloodPressure" />
+                        <TextView
+                            android:id="@+id/textLabelBloodPressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Blood Pressure"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageBloodPressure" />
 
-                    <TextView
-                        android:id="@+id/textSystolik"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50sp"
-                        android:layout_marginTop="32dp"
-                        android:includeFontPadding="false"
-                        android:text="120"
-                        android:textSize="50sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/textSeparator"
-                        app:layout_constraintHorizontal_bias="0.158"
-                        app:layout_constraintStart_toStartOf="@+id/textSeparator"
-                        app:layout_constraintTop_toBottomOf="@+id/textLabelBloodPressure" />
+                        <TextView
+                            android:id="@+id/textSystolik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50sp"
+                            android:layout_marginTop="32dp"
+                            android:includeFontPadding="false"
+                            android:text="@{report.systolik.toString()}"
+                            android:textSize="50sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@+id/textSeparator"
+                            app:layout_constraintHorizontal_bias="0.158"
+                            app:layout_constraintStart_toStartOf="@+id/textSeparator"
+                            app:layout_constraintTop_toBottomOf="@+id/textLabelBloodPressure" />
 
-                    <TextView
-                        android:id="@+id/textLabelSystolikUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="mmHg"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textSystolik"
-                        app:layout_constraintStart_toEndOf="@+id/textSystolik"
-                        app:layout_constraintTop_toTopOf="@+id/textSystolik" />
+                        <TextView
+                            android:id="@+id/textLabelSystolikUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="mmHg"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textSystolik"
+                            app:layout_constraintStart_toEndOf="@+id/textSystolik"
+                            app:layout_constraintTop_toTopOf="@+id/textSystolik" />
 
-                    <TextView
-                        android:id="@+id/textSeparator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="━━━━━━━━━━━━━━"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textSystolik" />
+                        <TextView
+                            android:id="@+id/textSeparator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="━━━━━━━━━━━━━━"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textSystolik" />
 
-                    <TextView
-                        android:id="@+id/textDiastolik"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50sp"
-                        android:includeFontPadding="false"
-                        android:text="80"
-                        android:textSize="50sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/textSystolik"
-                        app:layout_constraintStart_toStartOf="@+id/textSystolik"
-                        app:layout_constraintTop_toBottomOf="@+id/textSeparator" />
+                        <TextView
+                            android:id="@+id/textDiastolik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50sp"
+                            android:includeFontPadding="false"
+                            android:text="@{report.diastolik.toString()}"
+                            android:textSize="50sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@+id/textSystolik"
+                            app:layout_constraintStart_toStartOf="@+id/textSystolik"
+                            app:layout_constraintTop_toBottomOf="@+id/textSeparator" />
 
-                    <TextView
-                        android:id="@+id/textLabelDiastolikUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:gravity="bottom"
-                        android:text="mmHg"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textDiastolik"
-                        app:layout_constraintStart_toEndOf="@+id/textDiastolik"
-                        app:layout_constraintTop_toTopOf="@+id/textDiastolik" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/textLabelDiastolikUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="bottom"
+                            android:text="mmHg"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textDiastolik"
+                            app:layout_constraintStart_toEndOf="@+id/textDiastolik"
+                            app:layout_constraintTop_toTopOf="@+id/textDiastolik" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

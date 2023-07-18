@@ -9,7 +9,7 @@ interface UMCDao {
     fun insertUser(vararg user:User)
 
     @Query("SELECT * FROM 'user' WHERE userId=:id")
-    fun selectUser(id:String) : User
+    fun selectUser(id:Int) : User
 
     @Update
     fun updateUser(user:User)
@@ -23,19 +23,31 @@ interface UMCDao {
     fun selectDoctor() : List<Doctor>
 
     @Query("SELECT * FROM 'doctor' WHERE doctorId=:id")
-    fun selectDoctorById(id:String) : Doctor
+    fun selectDoctorById(id:Int) : Doctor
     //DOCTOR
+
+    //PILL
+    @Query("SELECT * FROM 'pill'")
+    fun getAllPills() : List<Pill>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPill(vararg pill: Pill)
+    //PILL
 
     //USER WITH PILL
     @Transaction
     @Query("Select * FROM 'user' WHERE userId=:id")
-    fun getUserPill(id:String) : List<UserWithPills>
+    fun getUserPill(id:Int) : List<UserWithPills>
+
+    @Transaction
+    @Query("INSERT INTO 'userpillcrossref'('userId', 'pillId') VALUES(:userId, :pillId)")
+    fun addUserPill(userId:Long, pillId:Long)
     //USER WITH PILL
 
     //USER WITH REPORT
     @Transaction
     @Query("Select * FROM 'user' WHERE userId=:id")
-    fun getUserReport(id:String) : UserWithReport
+    fun getUserReport(id:Int) : UserWithReport
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -49,10 +61,10 @@ interface UMCDao {
     //USER WITH DOCTOR APPOINTMENT
     @Transaction
     @Query("SELECT * FROM 'user' WHERE userId=:id")
-    fun getUserAppointment(id:String) : UserWithDoctorAppointment
+    fun getUserAppointment(id:Int) : UserWithDoctorAppointment
 
     @Transaction
     @Query("UPDATE 'user' SET doctorId=:doctorId , appointmentUser=:dateTimeAppointment WHERE userId=:userId")
-    fun addAppointment(userId:String, doctorId:String?, dateTimeAppointment:String?)
+    fun addAppointment(userId:Int, doctorId:Int?, dateTimeAppointment:String?)
     //USER WITH DOCTOR APPOINTMENT
 }
