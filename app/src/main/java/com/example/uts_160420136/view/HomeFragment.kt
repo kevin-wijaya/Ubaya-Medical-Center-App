@@ -1,6 +1,7 @@
 package com.example.uts_160420136.view
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,60 +26,58 @@ import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
-
+    private lateinit var shared:SharedPreferences
     private lateinit var dataBinding:FragmentHomeBinding
-    private var uid = 1
+    private var uid:Int = -1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false )
         return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        viewModel.load(uid)
-
+        viewModel.checkUser()
         observeViewModel()
+
+        shared = context!!.getSharedPreferences("com.example.uts_160420136", Context.MODE_PRIVATE)
+        uid = shared.getInt("UID",-1)
+        if(uid == -1) {
+            val intent = Intent(context, AuthActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            viewModel.load(uid)
+        }
     }
 
     fun observeViewModel() {
-        viewModel.userLD.observe(viewLifecycleOwner, Observer {
-            var user1 = User(
-                "Kevin Wijaya",
-                "kevinwijaya",
-                "kevinwijaya",
-                "kevinwijaya@gmail.com",
-                "2002-02-02",
-                "0892131381301",
-                "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
-                "A",
-                "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
+        viewModel.usersLD.observe(viewLifecycleOwner, Observer {
+            var admin = User(
+                "ubaya",
+                "ubaya",
+                "ubaya",
+                "ubaya@ubaya.ac.id",
+                "1968-03-11",
+                "(031) 2981005",
+                "Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur 60293",
+                "-",
+                "https://www.ubaya.ac.id/wp-content/uploads/sites/20/2023/05/logoUbaya200.png",
                 null,
                 null
             )
 
-            val user2 = User(
-                "Hendy Ardhana",
-                "hendyardhana",
-                "hendyardhana",
-                "hendyardhana@gmail.com",
-                "2002-12-18",
-                "0892131381301",
-                "Perumahan Pondok Jati Sidoarjo, Jawa Timur",
-                "O",
-                "https://media.licdn.com/dms/image/D5603AQEyOxEvzr0Q7w/profile-displayphoto-shrink_800_800/0/1673446061622?e=2147483647&v=beta&t=BMU500PdtTfksFpX2eDFZldabWSIIDf2S8JAzkuiKZc",
-                null,
-                null
-            )
-            if(it == null){
-                viewModel.addUser(user1)
-                viewModel.addUser(user2)
+            if(it.isEmpty()){
+                viewModel.addUser(admin)
             }
-            dataBinding.user = it
+        })
+        viewModel.userLD.observe(viewLifecycleOwner, Observer {
+            if(it != null) {
+                dataBinding.user = it
+            }
         })
     }
 }

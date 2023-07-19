@@ -1,5 +1,8 @@
 package com.example.uts_160420136.view
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,9 +23,9 @@ import com.example.uts_160420136.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
-
+    private lateinit var shared: SharedPreferences
     private lateinit var dataBinding : FragmentProfileBinding
-    var uid = 1
+    private var uid:Int = -1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +37,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        shared = context!!.getSharedPreferences("com.example.uts_160420136", Context.MODE_PRIVATE)
+        var editor:SharedPreferences.Editor = shared.edit()
+        uid = shared.getInt("UID",-1)
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.load(uid)
@@ -49,6 +55,13 @@ class ProfileFragment : Fragment() {
         dataBinding.buttonProfilePills.setOnClickListener {
             val action = ProfileFragmentDirections.actionPillFragment(uid)
             Navigation.findNavController(it).navigate(action)
+        }
+
+        dataBinding.buttonLogOut.setOnClickListener {
+            editor.clear()
+            editor.apply()
+            val intent = Intent(context, AuthActivity::class.java)
+            startActivity(intent)
         }
 
         observeViewModel()

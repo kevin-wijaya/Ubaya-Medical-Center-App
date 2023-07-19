@@ -84,30 +84,6 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.uts_160420136.view.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/actionItemHome"
-            app:destination="@id/itemHome"
-            app:popUpTo="@id/itemHome" />
-        <action
-            android:id="@+id/actionRegisterFragment"
-            app:destination="@id/registerFragment"
-            app:popUpTo="@id/registerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.uts_160420136.view.RegisterFragment"
-        android:label="Register"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/actionLoginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/loginFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.uts_160420136.view.ReportFragment"
         android:label="Last Check Up Report"

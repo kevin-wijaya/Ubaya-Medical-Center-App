@@ -11,6 +11,18 @@ interface UMCDao {
     @Query("SELECT * FROM 'user' WHERE userId=:id")
     fun selectUser(id:Int) : User
 
+    //SELECT USER
+    @Query("SELECT * FROM 'user'")
+    fun selectUsers() : List<User>
+
+    //CHECK USER LOGIN
+    @Query("SELECT * FROM 'user' WHERE username=:username AND password=:password")
+    fun CheckUserLogin(username:String, password:String) : User
+
+    //CHECK USER REGISTER
+    @Query("SELECT * from 'user' WHERE username=:username")
+    fun CheckUserRegister(username:String) : User
+
     @Update
     fun updateUser(user:User)
     //USER
