@@ -82,7 +82,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/textInputLayoutProfile5"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="@+id/textInputLayoutProfile5"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutProfile8" />
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutProfile9" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutProfile1"
@@ -276,6 +276,30 @@
                         android:id="@+id/editTextBloodType"
                         android:text="@={user.bloodType}"
                         android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutProfile9"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Photo Url"
+                    app:boxCornerRadiusBottomEnd="20dp"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textInputLayoutProfile8"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayoutProfile8"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutProfile8"
+                    app:startIconDrawable="@drawable/baseline_insert_photo_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPhotoUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={user.photoUrl}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

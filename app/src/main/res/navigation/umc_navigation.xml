@@ -110,4 +110,9 @@
             android:name="userId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/itemService"
+        android:name="com.example.uts_160420136.view.ServiceFragment"
+        android:label="Service"
+        tools:layout="@layout/fragment_service" />
 </navigation>

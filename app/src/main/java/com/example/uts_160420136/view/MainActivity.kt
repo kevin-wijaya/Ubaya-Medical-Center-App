@@ -19,8 +19,10 @@ import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.ActivityMainBinding
 import com.example.uts_160420136.model.Doctor
 import com.example.uts_160420136.model.Pill
+import com.example.uts_160420136.model.Service
 import com.example.uts_160420136.viewmodel.ListDoctorViewModel
 import com.example.uts_160420136.viewmodel.ListPillViewModel
+import com.example.uts_160420136.viewmodel.ListServiceViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var doctorViewModel:ListDoctorViewModel
     private lateinit var pillViewModel:ListPillViewModel
+    private lateinit var serviceViewModel:ListServiceViewModel
     private lateinit var dataBinding:ActivityMainBinding
     var doctorList:List<Doctor> = listOf()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.itemHome ||
                 destination.id == R.id.itemSearch ||
+                destination.id == R.id.itemService ||
                 destination.id == R.id.itemProfile) {
                 dataBinding.bottomNav.visibility = View.VISIBLE
                 dataBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -69,8 +73,11 @@ class MainActivity : AppCompatActivity() {
         doctorViewModel.load()
         pillViewModel = ViewModelProvider(this).get(ListPillViewModel::class.java)
         pillViewModel.getPills()
+        serviceViewModel = ViewModelProvider(this).get(ListServiceViewModel::class.java)
+        serviceViewModel.selectServices()
         setDoctor()
         setPill()
+        setServices()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -226,6 +233,47 @@ class MainActivity : AppCompatActivity() {
         pillViewModel.pillsLd.observe(this, Observer {
             if(it.isEmpty()){
                 pillViewModel.addPill(pills)
+            }
+        })
+    }
+
+    fun setServices(){
+        val services = listOf(
+            Service(
+                "General Check Up",
+                "Layanan pemeriksaan menyeluruh untuk mengevaluasi kesehatan keseluruhan Anda.",
+                "@drawable/general_checkup"
+            ),
+            Service(
+                "Dental Check Up",
+                "Pemeriksaan gigi dan mulut untuk menjaga kesehatan gigi dan gusi.",
+                "@drawable/dental_checkup   "
+            ),
+            Service(
+                "Medical Check Up",
+                "Evaluasi kesehatan komprehensif dengan berbagai pemeriksaan dan tes medis.",
+                "@drawable/baseline_medical_services_24"
+            ),
+            Service(
+                "Covid 19 Test",
+                "Tes deteksi Covid-19 menggunakan PCR dan rapid test.",
+                " @drawable/covid_test"
+            ),
+            Service(
+                "Lab",
+                "Laboratorium medis dengan beragam tes untuk diagnosis kondisi kesehatan.",
+                "@drawable/laboratorium"
+            ),
+            Service(
+            "Online Shop",
+            "Toko online menyediakan produk kesehatan dan perawatan berkualitas.\nhttps://www.tokopedia.com/apotekubaya?source=universe&st=product",
+            "@drawable/sell"
+        )
+        )
+
+        serviceViewModel.servicesLd.observe(this, Observer {
+            if(it.isEmpty()){
+                serviceViewModel.addServices(services)
             }
         })
     }

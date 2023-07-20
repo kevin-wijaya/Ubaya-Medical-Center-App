@@ -11,15 +11,12 @@ interface UMCDao {
     @Query("SELECT * FROM 'user' WHERE userId=:id")
     fun selectUser(id:Int) : User
 
-    //SELECT USER
     @Query("SELECT * FROM 'user'")
     fun selectUsers() : List<User>
 
-    //CHECK USER LOGIN
     @Query("SELECT * FROM 'user' WHERE username=:username AND password=:password")
     fun CheckUserLogin(username:String, password:String) : User
 
-    //CHECK USER REGISTER
     @Query("SELECT * from 'user' WHERE username=:username")
     fun CheckUserRegister(username:String) : User
 
@@ -79,4 +76,22 @@ interface UMCDao {
     @Query("UPDATE 'user' SET doctorId=:doctorId , appointmentUser=:dateTimeAppointment WHERE userId=:userId")
     fun addAppointment(userId:Int, doctorId:Int?, dateTimeAppointment:String?)
     //USER WITH DOCTOR APPOINTMENT
+
+    //SERVICES
+    @Query("SELECT * FROM 'service'")
+    fun selectServices() : List<Service>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertService(vararg service: Service)
+    //SERVICES
+
+    //ARTICLE
+    @Query("SELECT * FROM 'article'")
+    fun selectArticles() : List<Article>
+
+    @Query("SELECT * FROM 'article' WHERE artileId=:id")
+    fun selectArticle(id:Int) : Article
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertArticle(vararg article: Article)
+    //ARTICLE
 }

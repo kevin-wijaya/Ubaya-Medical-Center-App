@@ -99,3 +99,24 @@ data class UserWithDoctorAppointment(
     )
     val doctor: Doctor?
 )
+
+@Entity
+data class Service (
+    var name: String?,
+    var description: String?,
+    var icon: String?,
+){
+    @PrimaryKey(autoGenerate = true)
+    var serviceId:Int = 0
+}
+
+@Entity
+data class Article (
+    var name: String?,
+    var description: String?,
+    var photoUrl: String?,
+    var date: String?
+){
+    @PrimaryKey(autoGenerate = true)
+    var artileId:Int = 0
+}
