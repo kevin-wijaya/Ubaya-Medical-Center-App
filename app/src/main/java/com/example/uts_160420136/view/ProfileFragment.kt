@@ -44,6 +44,11 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.load(uid)
 
+        dataBinding.buttonHistoryAppointment.setOnClickListener {
+            val action = ProfileFragmentDirections.actionHistoryFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
         dataBinding.buttonProfileReports.setOnClickListener {
             val action = ProfileFragmentDirections.actionReportFragment(uid)
             Navigation.findNavController(it).navigate(action)

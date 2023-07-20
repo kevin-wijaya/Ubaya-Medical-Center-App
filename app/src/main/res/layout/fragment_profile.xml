@@ -25,11 +25,34 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/buttonProfileReports"
+                    android:id="@+id/buttonHistoryAppointment"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="32dp"
+                    android:gravity="center|left"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="History Appointment"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/baseline_menu_book_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconSize="25dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardUserImportant"
+                    app:layout_constraintStart_toStartOf="@+id/cardUserImportant"
+                    app:layout_constraintTop_toBottomOf="@+id/cardUserImportant"
+                    app:strokeColor="@color/purple_700"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/buttonProfileReports"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center|left"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
@@ -41,9 +64,9 @@
                     app:iconGravity="textStart"
                     app:iconPadding="8dp"
                     app:iconSize="25dp"
-                    app:layout_constraintEnd_toEndOf="@+id/cardUserImportant"
-                    app:layout_constraintStart_toStartOf="@+id/cardUserImportant"
-                    app:layout_constraintTop_toBottomOf="@+id/cardUserImportant"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonHistoryAppointment"
+                    app:layout_constraintStart_toStartOf="@+id/buttonHistoryAppointment"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonHistoryAppointment"
                     app:strokeColor="@color/purple_700"
                     app:strokeWidth="1dp" />
 

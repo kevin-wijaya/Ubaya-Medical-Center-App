@@ -59,6 +59,7 @@ val MIGRATION_3_4 = object: Migration(3,4){
 
 val MIGRATION_4_5 = object: Migration(4,5){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("")
+        database.execSQL("CREATE TABLE IF NOT EXISTS service (serviceId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, icon INT")
+        database.execSQL("CREATE TABLE IF NOT EXISTS article (artileId INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, photoUrl TEXT, date TEXT")
     }
 }
