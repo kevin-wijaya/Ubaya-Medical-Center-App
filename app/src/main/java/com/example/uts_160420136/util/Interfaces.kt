@@ -22,3 +22,7 @@ interface ButtonMakeAppointment{
 interface ButtonBookNow{
     fun onClickBook(view: View)
 }
+
+interface  ButtonDetailArticle {
+    fun onClick(view: View)
+}

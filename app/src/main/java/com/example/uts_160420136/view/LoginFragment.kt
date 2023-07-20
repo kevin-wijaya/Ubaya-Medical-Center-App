@@ -51,7 +51,10 @@ class LoginFragment : Fragment() {
             )
         }
         dataBinding.buttonGoogleLogin.setOnClickListener {
-            viewModel.load(1)
+            viewModel.checkLogin(
+                "ubaya",
+                "ubaya"
+            )
         }
         observeViewModel()
     }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="article"
+            type="com.example.uts_160420136.model.Article" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ArticleDetailFragment">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textTitleArticle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{article.title}"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/cardViewPosterArticle"
+                    app:layout_constraintStart_toStartOf="@+id/cardViewPosterArticle"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewPosterArticle" />
+
+                <TextView
+                    android:id="@+id/textDateArticle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/baseline_date_range_24"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="@{article.date}"
+                    android:textColor="#5F5F5F"
+                    android:textSize="19sp"
+                    app:layout_constraintStart_toStartOf="@+id/textTitleArticle"
+                    app:layout_constraintTop_toBottomOf="@+id/textTitleArticle" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewPosterArticle"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageViewPosterArticle"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:scaleType="centerCrop"
+                            imageUrl="@{article.photoUrl}"
+                            progressBar="@{progressDetailBarArticle}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:src="@tools:sample/avatars" />
+
+                        <ProgressBar
+                            android:id="@+id/progressDetailBarArticle"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textDescriptionArticle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{article.description}"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/textTitleArticle"
+                    app:layout_constraintStart_toStartOf="@+id/textDateArticle"
+                    app:layout_constraintTop_toBottomOf="@+id/textDateArticle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</layout>

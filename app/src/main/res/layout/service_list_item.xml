@@ -7,6 +7,7 @@
         <variable
             name="service"
             type="com.example.uts_160420136.model.Service" />
+        <import type="androidx.core.content.ContextCompat"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardServiceItem"
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="110dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
@@ -35,14 +36,16 @@
                 <ImageView
                     android:id="@+id/iconServiceItem"
                     android:layout_width="80dp"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="250dp"
+                    android:layout_marginBottom="12dp"
+                    android:src="@{ContextCompat.getDrawable(context, service.icon)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@{service.icon}" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textServiceName"
@@ -58,11 +61,16 @@
 
                 <TextView
                     android:id="@+id/textServiceDescription"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:layout_marginEnd="23dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
                     android:text="@{service.description}"
                     android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textServiceName"
                     app:layout_constraintTop_toBottomOf="@+id/textServiceName" />
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,7 @@ class PillFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerViewPill = view.findViewById<RecyclerView>(R.id.recyclerViewPill)
+        val recyclerViewPill = dataBinding.recyclerViewPill
         val id = PillFragmentArgs.fromBundle(requireArguments()).userId
         viewModel = ViewModelProvider(this).get(ListPillViewModel::class.java)
         viewModel.load(id)

@@ -104,7 +104,7 @@ data class UserWithDoctorAppointment(
 data class Service (
     var name: String?,
     var description: String?,
-    var icon: String?,
+    var icon: Int?,
 ){
     @PrimaryKey(autoGenerate = true)
     var serviceId:Int = 0
@@ -112,7 +112,7 @@ data class Service (
 
 @Entity
 data class Article (
-    var name: String?,
+    var title: String?,
     var description: String?,
     var photoUrl: String?,
     var date: String?

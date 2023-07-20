@@ -195,6 +195,38 @@
                     app:layout_constraintTop_toTopOf="@+id/cardUserHomeImage"
                     app:strokeWidth="0dp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewArticles"
+                    android:layout_width="0dp"
+                    android:layout_height="420dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textNameUserHome2"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/textArticleError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Error while loading data article"
+                    app:layout_constraintBottom_toBottomOf="@+id/recyclerViewArticles"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerViewArticles"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerViewArticles"
+                    app:layout_constraintTop_toTopOf="@+id/recyclerViewArticles" />
+
+                <ProgressBar
+                    android:id="@+id/progressArticleError"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/textArticleError"
+                    app:layout_constraintEnd_toEndOf="@+id/textArticleError"
+                    app:layout_constraintStart_toStartOf="@+id/textArticleError"
+                    app:layout_constraintTop_toTopOf="@+id/textArticleError" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </FrameLayout>
