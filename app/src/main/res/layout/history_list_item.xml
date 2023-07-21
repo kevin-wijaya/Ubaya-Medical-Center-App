@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="history"
-            type="com.example.uts_160420136.model.UserWithDoctorAppointment" />
+            name="doctorhistory"
+            type="com.example.uts_160420136.model.HistoryWithDoctor" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +42,7 @@
                     android:gravity="center"
                     android:textColor="#5F5F5F"
                     android:textSize="15sp"
+                    android:text='@{doctorhistory.history.timeAppointment+ ":00"}'
                     app:layout_constraintStart_toStartOf="@+id/textDateHistory"
                     app:layout_constraintTop_toBottomOf="@+id/textDateHistory" />
 
@@ -55,6 +56,7 @@
                     android:gravity="center"
                     android:textColor="#5F5F5F"
                     android:textSize="15sp"
+                    android:text="@{doctorhistory.history.dateAppointment}"
                     app:layout_constraintStart_toStartOf="@+id/textDoctorNameHistory"
                     app:layout_constraintTop_toBottomOf="@+id/textDoctorNameHistory" />
 
@@ -64,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Nama Doctor"
+                    android:text="@{doctorhistory.doctor.name}"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold"

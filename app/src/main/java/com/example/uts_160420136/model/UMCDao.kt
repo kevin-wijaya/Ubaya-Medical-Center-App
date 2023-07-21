@@ -94,4 +94,12 @@ interface UMCDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArticle(vararg article: Article)
     //ARTICLE
+
+    //HISTORY
+    @Query("SELECT * FROM 'history' WHERE userId=:id ORDER BY historyId DESC")
+    fun selectDoctorHistory(id:Int) : List<HistoryWithDoctor>
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addUserHistory(history: History)
+    //HISTORY
 }

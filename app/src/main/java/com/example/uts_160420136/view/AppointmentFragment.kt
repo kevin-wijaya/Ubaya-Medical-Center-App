@@ -13,13 +13,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.uts_160420136.R
 import com.example.uts_160420136.databinding.FragmentAppointmentBinding
+import com.example.uts_160420136.model.History
 import com.example.uts_160420136.util.ButtonBookNow
 import com.example.uts_160420136.viewmodel.AppointmentiewModel
+import com.example.uts_160420136.viewmodel.ListHistoryViewModel
 import java.text.SimpleDateFormat
 
 class AppointmentFragment : Fragment(), ButtonBookNow {
 
     private lateinit var viewModel:AppointmentiewModel
+    private lateinit var historyViewModel:ListHistoryViewModel
     private lateinit var dataBinding:FragmentAppointmentBinding
 
     var dayofmonths = ""
@@ -43,6 +46,7 @@ class AppointmentFragment : Fragment(), ButtonBookNow {
         userId = AppointmentFragmentArgs.fromBundle(requireArguments()).userId
 
         viewModel = ViewModelProvider(this).get(AppointmentiewModel::class.java)
+        historyViewModel = ViewModelProvider(this).get(ListHistoryViewModel::class.java)
 
         //val currentDate = Calendar.getInstance().timeInMillis + 86400000 //besok
         val currentDate = Calendar.getInstance().timeInMillis
@@ -110,6 +114,7 @@ class AppointmentFragment : Fragment(), ButtonBookNow {
             viewModel.addAppointment(userId, doctorId, "$dayofmonths-$monthss-$yearss-$time")
             Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(view).popBackStack()
+            historyViewModel.addUserHistory(History("$dayofmonths-$monthss-$yearss", time, doctorId, userId))
         }
     }
 

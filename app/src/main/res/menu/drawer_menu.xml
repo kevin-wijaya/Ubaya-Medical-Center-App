@@ -30,11 +30,4 @@
             android:title="Profile"
             app:showAsAction="always" />
     </group>
-    <group android:visible="true">
-        <item
-            android:id="@+id/ItemLogOut"
-            android:icon="@drawable/baseline_logout_24"
-            android:title="Log Out"
-            app:showAsAction="always" />
-    </group>
 </menu>

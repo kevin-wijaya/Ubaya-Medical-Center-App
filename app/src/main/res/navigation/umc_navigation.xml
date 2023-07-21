@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionArticleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/actionFillInformationFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
@@ -134,5 +137,9 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.uts_160420136.view.HistoryFragment"
-        android:label="History Appointment" />
+        android:label="History Appointment" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

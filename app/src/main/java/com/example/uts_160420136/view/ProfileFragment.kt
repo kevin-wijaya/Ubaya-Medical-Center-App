@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
         viewModel.load(uid)
 
         dataBinding.buttonHistoryAppointment.setOnClickListener {
-            val action = ProfileFragmentDirections.actionHistoryFragment()
+            val action = ProfileFragmentDirections.actionHistoryFragment(uid)
             Navigation.findNavController(it).navigate(action)
         }
 
@@ -63,7 +63,7 @@ class ProfileFragment : Fragment() {
         }
 
         dataBinding.buttonLogOut.setOnClickListener {
-            editor.clear()
+            editor.remove("UID")
             editor.apply()
             val intent = Intent(context, AuthActivity::class.java)
             startActivity(intent)

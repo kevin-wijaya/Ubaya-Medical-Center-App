@@ -41,25 +41,26 @@ fun buildDb(context: Context): UMCDatabase = Room.databaseBuilder(context, UMCDa
 //Migration 4: nambah tabel service, article
 val MIGRATION_1_2 = object: Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("")
+        database.execSQL("CREATE TABLE IF NOT EXISTS userpillcrossref(userId INTEGER, pillId INTEGER, FOREIGN KEY(userId) REFERENCES user(userId), FOREIGN KEY(pillId) REFERENCES pill(pillId))")
     }
 }
 
 val MIGRATION_2_3 = object: Migration(2,3){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("")
+        database.execSQL("ALTER TABLE report ADD userId INTEGER, ADD FOREIGN KEY(userId) REFERENCES user(userId)")
     }
 }
 
 val MIGRATION_3_4 = object: Migration(3,4){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("")
+        database.execSQL("ALTER TABLE user ADD doctorID INTEGER, ADD FOREIGN KEY(doctorId) REFERENCES doctor(doctorId)")
+        database.execSQL("ALTER TABLE user ADD appointmentUser varchar(45)")
     }
 }
 
 val MIGRATION_4_5 = object: Migration(4,5){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("CREATE TABLE IF NOT EXISTS service (serviceId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, icon INT")
-        database.execSQL("CREATE TABLE IF NOT EXISTS article (artileId INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, photoUrl TEXT, date TEXT")
+        database.execSQL("CREATE TABLE IF NOT EXISTS service (serviceId INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, description TEXT, icon INT)")
+        database.execSQL("CREATE TABLE IF NOT EXISTS article (articleId INTEGER PRIMARY KEY AUTO_INCREMENT, title TEXT, description TEXT, photoUrl TEXT, date TEXT)")
     }
 }

@@ -1,10 +1,6 @@
 package com.example.uts_160420136.model
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.Junction
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @Entity
@@ -116,7 +112,27 @@ data class Article (
     var description: String?,
     var photoUrl: String?,
     var date: String?
-){
+) {
     @PrimaryKey(autoGenerate = true)
-    var artileId:Int = 0
+    var artileId: Int = 0
+
 }
+@Entity
+data class History (
+    var dateAppointment: String?,
+    var timeAppointment: String?,
+    var doctorId: Int?,
+    var userId:Int?,
+) {
+    @PrimaryKey(autoGenerate = true)
+    var historyId: Int = 0
+}
+
+data class HistoryWithDoctor(
+    @Embedded val history: History,
+    @Relation(
+        parentColumn = "historyId",
+        entityColumn = "doctorId"
+    )
+    val doctor: Doctor?
+)

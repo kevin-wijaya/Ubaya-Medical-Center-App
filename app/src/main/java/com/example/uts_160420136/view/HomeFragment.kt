@@ -62,6 +62,11 @@ class HomeFragment : Fragment() {
 
             recyclerViewArticles.layoutManager = LinearLayoutManager(context)
             recyclerViewArticles.adapter = articleListAdapter
+
+            dataBinding.buttonFeelInformation.setOnClickListener {
+                val action = HomeFragmentDirections.actionFillInformationFragment(uid)
+                Navigation.findNavController(it).navigate(action)
+            }
         }
     }
 
