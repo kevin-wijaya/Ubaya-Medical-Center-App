@@ -105,7 +105,6 @@
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:text="Book Now"
-                    android:onClick="@{booklistener::onClickBook}"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     app:cornerRadius="15dp"

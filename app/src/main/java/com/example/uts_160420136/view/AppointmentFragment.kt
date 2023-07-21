@@ -22,9 +22,9 @@ class AppointmentFragment : Fragment(), ButtonBookNow {
     private lateinit var viewModel:AppointmentiewModel
     private lateinit var dataBinding:FragmentAppointmentBinding
 
-    var dayofmonths = 0
-    var monthss = 0
-    var yearss = 0
+    var dayofmonths = ""
+    var monthss = ""
+    var yearss = ""
 
     var doctorId = 0
     var userId = 0
@@ -80,10 +80,15 @@ class AppointmentFragment : Fragment(), ButtonBookNow {
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_layout)
         dataBinding.spinnerTimeAvailable.adapter = spinnerAdapter
 
+        val sdfDate = SimpleDateFormat("dd")
+        val sdfMonth = SimpleDateFormat("M")
+
+        dayofmonths = sdfDate.format(currentDate)
+        monthss = sdfMonth.format(currentDate)
+        yearss = "2023"
+
         dataBinding.calendarAppointment.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            val sdfDate = SimpleDateFormat("dd")
             val date = sdfDate.format(dataBinding.calendarAppointment.date)
-            val sdfMonth = SimpleDateFormat("M")
             val months = sdfMonth.format(dataBinding.calendarAppointment.date)
             if(dayOfMonth.toString() != date.toString()){
                 spinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, arrs)
@@ -96,16 +101,23 @@ class AppointmentFragment : Fragment(), ButtonBookNow {
                 dataBinding.spinnerTimeAvailable.adapter = spinnerAdapter
             }
 
-            dayofmonths = dayOfMonth
-            monthss = month
-            yearss = year
+            dayofmonths = dayOfMonth.toString()
+            monthss = month.toString()
+            yearss = year.toString()
+        }
+        dataBinding.buttonBookNow.setOnClickListener {
+            val time = dataBinding.spinnerTimeAvailable.selectedItem.toString().take(2)
+            viewModel.addAppointment(userId, doctorId, "$dayofmonths-$monthss-$yearss-$time")
+            Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(view).popBackStack()
         }
     }
 
     override fun onClickBook(view: View) {
-        val time = dataBinding.spinnerTimeAvailable.selectedItem.toString().take(2)
-        viewModel.addAppointment(userId, doctorId, "$dayofmonths-$monthss-$yearss-$time")
-        Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
-        Navigation.findNavController(view).popBackStack()
+        //Toast.makeText(context, "Masuk kok sebenernya", Toast.LENGTH_SHORT).show()
+//        val time = dataBinding.spinnerTimeAvailable.selectedItem.toString().take(2)
+//        viewModel.addAppointment(userId, doctorId, "$dayofmonths-$monthss-$yearss-$time")
+//        Toast.makeText(context, "Book Success!", Toast.LENGTH_SHORT).show()
+//        Navigation.findNavController(view).popBackStack()
     }
 }
